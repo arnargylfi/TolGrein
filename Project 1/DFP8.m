@@ -1,7 +1,6 @@
-function DF = DFP7(q) %Part 7
+function DF = DFP8(q,x) %Part 8
 
 D = 0.2;
-x = 2.5; %Part 7 ekki 8
 L = [5; x; 5-x; 1; 1; 1; x; 5-x; 5];
 rho = 998;
 f = 0.02;

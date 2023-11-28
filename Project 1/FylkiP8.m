@@ -1,7 +1,7 @@
-function fylki = FylkiP7(q) %(Ekki fylki) Part 7
+function fylki = FylkiP8(q,x) %(Ekki fylki) Part 8
+
 
 D = 0.2;
-x = 2.5; %Part 7 ekki 8 
 L = [5; x; 5-x; 1; 1; 1; x; 5-x; 5];
 rho = 998;
 delta_p0 = 0.5;
