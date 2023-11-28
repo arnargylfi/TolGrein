@@ -1,5 +1,3 @@
-
-
 q = 10^(-4)*[2,4,3,4,5,4,3,2,3];
 
 D = 0.2;
@@ -13,7 +11,7 @@ f = 0.02;
 x = 0.1:0.1:4.9;
 Q = [];
 for k = 1:length(x)
-    Q(k,:) = newtonmult(q,10^(-7),x(k));
+    Q(k,:) = newtonmult8(q,10^(-7),x(k));
 end
 plot(x,Q,"linewidth",1.5)   
 colororder(["yellow","red","green","blue","black","#800080","#964B00","#FFB6C1","#FFA500"])
