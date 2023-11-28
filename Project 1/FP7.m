@@ -1,7 +1,7 @@
-function fylki = FylkiP7(q) %(Ekki fylki) Part 7
+function F7 = FP7(q) 
 
 D = 0.2;
-x = 2.5; %Part 7 ekki 8 
+x = 2.5;  
 L = [5; x; 5-x; 1; 1; 1; x; 5-x; 5];
 rho = 998;
 delta_p0 = 0.5;
@@ -9,7 +9,7 @@ Qc = 10^(-5);
 f = 0.02;
 
 
-fylki = [q(1)-q(2)-q(4);
+F7 = [q(1)-q(2)-q(4);
     q(2)-q(3)-q(5);
     q(3)-q(6)-Qc;
     q(4)-q(7);

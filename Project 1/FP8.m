@@ -1,4 +1,4 @@
-function fylki = FylkiP8(q,x) %(Ekki fylki) Part 8
+function F8 = FP8(q,x) %(Ekki fylki) Part 8
 
 
 D = 0.2;
@@ -9,7 +9,7 @@ Qc = 10^(-5);
 f = 0.02;
 
 
-fylki = [q(1)-q(2)-q(4);
+F8 = [q(1)-q(2)-q(4);
     q(2)-q(3)-q(5);
     q(3)-q(6)-Qc;
     q(4)-q(7);

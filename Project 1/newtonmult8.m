@@ -5,7 +5,7 @@ function x=newtonmult8(x0,tol,l0) %Part 8
 x=x0';oldx=x0+2*tol;
 while norm(x-oldx,inf)>tol
    oldx=x;
-s=-DFP8(x,l0)\FylkiP8(x,l0); %Part 8
+s=-DFP8(x,l0)\FP8(x,l0); %Part 8
    x=x+s;
 end
 end

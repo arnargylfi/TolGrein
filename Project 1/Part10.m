@@ -7,5 +7,5 @@ rho = 998;
 delta_p0 = 0.5;
 Qc = 10^(-5);
 
-q = newtonmult(q,10^(-7))
-Re = max((4*rho*q)/(mu*pi*D))
+q = newtonmult(q,10^(-7)) %ATHUGA FARA Í NEWTONMULT.M OG COMMENTA ÚT Part 7 og COMMENTA INN PART 10!!!
+% Re = max((4*rho*q)/(mu*pi*D))

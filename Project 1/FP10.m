@@ -1,4 +1,4 @@
-function fylki = FylkiP10(q) 
+function F10 = FP10(q) 
 
 
 D = 0.2;
@@ -13,7 +13,7 @@ beta = -0.25;
 Re = (4*rho*q)/(mu*pi*D);
 f = alpha*Re.^beta;
 
-fylki = [q(1)-q(2)-q(4);
+F10 = [q(1)-q(2)-q(4);
     q(2)-q(3)-q(5);
     q(3)-q(6)-Qc;
     q(4)-q(7);
