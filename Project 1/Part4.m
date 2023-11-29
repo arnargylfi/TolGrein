@@ -22,7 +22,7 @@ A_2 = [ones(length(T_2),1),1./(T_2+T0),1./(T_2+T0).^2];
 mu_2 = exp(A_2*x);
 plot(T_2,mu_2);
 
-RMSE = sum((exp(A*x)-mu).^2*1)/length(A);
+RMSE = sqrt(sum((exp(A*x)-mu).^2*1)/length(A));
 
 
 
