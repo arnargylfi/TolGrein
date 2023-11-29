@@ -1,4 +1,4 @@
-x = 0.01:0.01:0.11;
+x=linspace(0.01,0.1027,11);
 y= [];
 for k = 1:length(x)
     y(:,k)= q_delta_p(x(k));
