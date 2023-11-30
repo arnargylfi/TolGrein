@@ -1,5 +1,5 @@
 function [q,Re] = q_Re_mu(mu)
-%Skilar flowrate og tekur delta_p0 sem breytu
+%Skilar flæði (q) og Reynolds (Re) tölu og tekur seigju (mu) sem breytu
 Qc = 10^(-5);
 delta_p0 = 0.01;
 rho = 998;
