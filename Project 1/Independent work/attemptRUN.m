@@ -1,10 +1,9 @@
 q0 = 10^(-4)*[2;4;3;4;5;4;3;2;3;4;0.01];
-d = 2*10^(-4);
-delta_p0 = 0.5;
+d = 2*10^(-3);
+delta_p0 = 1;
 D = [0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;d];
 rho = 998;
 mu = 1.002*10^(-3);
+q_result = newtonmult(q0,10^(-7),d,delta_p0)
 
-q_result = newtonmult(q0,10^(-7),d,0.1)
-
-Reynolds = (4*rho*q_result)./(mu*pi*D)
+Reynolds = (4*rho*q_result)./(mu*pi*D);

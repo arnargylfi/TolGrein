@@ -27,20 +27,19 @@ lam_const = 128*mu./(pi^2*D.^4);
 %MARGFALDA ÞESSA STUÐLA VIÐ TURBULENT OG LAMINAR LOGICAL ARRAYIÐ SVO ÞEIR
 
 %MUNU BARA MARGFALDAST VIÐ VIÐEIGANDI FLÆÐI OG VIÐEIGANDI q^2 eða q^1 !!!
-studlar12 = 2*turbulent.*q+laminar;   %2*q allsstaðar þar sem það er iðustreymi og 1 þar sem það er lagsstreymi
-studlar34 = 2*turb_const.*turbulent.*q+lam_const.*laminar; %2* turbulence fastinn * q þar sem það er iðustreymi og laminar fastinn *1 þar sem það er lagstreymi
+studlar = 2*turb_const.*turbulent.*q+lam_const.*laminar; %2* turbulence fastinn * q þar sem það er iðustreymi og laminar fastinn *1 þar sem það er lagstreymi
 
 %HEILDAR JÖFNU HNEPPI
 
 DFattempt = [1,-1,0,-1,0,0,0,0,0,0,0;
     0,1,0,0,0,0,0,0,0,-1,-1;
-    0,0,-1,0,-1,0,0,0,0,0,1;
+    0,0,-1,0,-1,0,0,0,0,1,0;
     0,0,1,0,0,-1,0,0,0,0,0;
     0,0,0,1,0,0,-1,0,0,0,0;
     0,0,0,0,1,0,1,-1,0,0,0;
     0,0,0,0,0,1,0,1,-1,0,0;
-    studla_matrix(1,:).*studlar12';
-    studla_matrix(2,:).*studlar12';
-    studla_matrix(3,:).*studlar34';
-    studla_matrix(4,:).*studlar34';];
+    studla_matrix(1,:).*studlar';
+    studla_matrix(2,:).*studlar';
+    studla_matrix(3,:).*studlar';
+    studla_matrix(4,:).*studlar';];
 
