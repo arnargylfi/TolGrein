@@ -1,18 +1,18 @@
-function Fattempt = attemptF(q) 
+function Fattempt = attemptF(q,d,delta_p0) 
 % q = 10^(-4)*[2;4;3;4;5;4;3;2;3;4;9];
-d = 2*10^(-3);
+% d = 2*10^(-3);
 D = [0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;d];
 x = 2.5; 
 L = [5; x/2; 5-x; 1; 1; 1; x; 5-x; 5;x/2;0.02];
 rho = 998;
-delta_p0 = 0.5;
+% delta_p0 = 0.5;
 Qc = 10^(-5);
 mu = 1.002*10^(-3);
 alpha = 0.3164;
 beta = -0.25;
 Re = (4*rho*q)./(mu*pi*D);
 f = alpha*Re.^beta; %Darcy friction coefficient. 
-turbulent = Re>= 2000; %Skilar logical array þar sem 1 er allstaðar þar sem það er turbulent 
+turbulent = Re>= 2000 %Skilar logical array þar sem 1 er allstaðar þar sem það er turbulent 
 laminar = ~turbulent; %skilar öfugu logical array.
 %Reikna núna seinustu jöfnurnar, þar sem þær eru þær einu sem eru
 %breytilegar eftir iðu/lag
