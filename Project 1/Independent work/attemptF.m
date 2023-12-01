@@ -12,7 +12,7 @@ alpha = 0.3164;
 beta = -0.25;
 Re = (4*rho*q)./(mu*pi*D);
 f = alpha*Re.^beta; %Darcy friction coefficient. 
-turbulent = Re>= 2000; %Skilar logical array þar sem 1 er allstaðar þar sem það er turbulent 
+turbulent = Re>= 2000 %Skilar logical array þar sem 1 er allstaðar þar sem það er turbulent 
 laminar = ~turbulent; %skilar öfugu logical array.
 %Reikna núna seinustu jöfnurnar, þar sem þær eru þær einu sem eru
 %breytilegar eftir iðu/lag
@@ -42,5 +42,5 @@ Fattempt = [q(1)-q(2)-q(4);
     q(6)+q(8)-q(9);
     eqs8_11(1);
     eqs8_11(2);
-    eqs8_11(3);
+    eqs8_11(3)-delta_p0;
     eqs8_11(4)-delta_p0];
