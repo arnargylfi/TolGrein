@@ -1,4 +1,4 @@
-function Fprofa = FPprofa(q,x) %(Ekki fylki) Part 8
+function Fprofa = FPprofa(q,x) %(Ekki fylki)
 
 D = 0.2;
 L = [5; x; 5-x; 1; 1; 1; x; 5-x; 5];
