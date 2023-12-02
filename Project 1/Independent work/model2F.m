@@ -1,4 +1,4 @@
-function Fattempt = attemptF(q,d,delta_p0) 
+function Fattempt = model2F(q,d,delta_p0) 
 % q = 10^(-4)*[2;4;3;4;5;4;3;2;3;4;9];
 % d = 2*10^(-3);
 % delta_p0 = 0.5;
@@ -11,7 +11,11 @@ mu = 1.002*10^(-3);
 alpha = 0.3164;
 beta = -0.25;
 Re = (4*rho*q)./(mu*pi*D)
-f = alpha*Re.^beta; %Darcy friction coefficient. 
+f_turb = alpha*Re.^beta; %Darcy friction coefficient. 
+f_lam = 64/Re;
+turb_const = 8*f_turb*rho./(pi^2*D.^5);
+%LAMINAR STUÐLAR FYRIR SEINUSTU TVÆR JÖFNUR
+lam_const =  8*f_lam*rho./(pi^2*D.^5);
 
 turbulent = Re>= 2000; %Skilar logical array þar sem 1 er allstaðar þar sem það er turbulent 
 laminar = ~turbulent; %skilar öfugu logical array.
@@ -24,13 +28,10 @@ studla_matrix = [0,0,L(3),0,-L(5),L(6),0,-L(8),0,0,0;
 L(1),0,0,L(4),0,0,L(7),L(8),L(9),0,0;
 L(1),L(2),0,0,0,0,0,0,0,0,L(11)];
 
-%TURBULENT STUÐULL FYRIR SEINUSTU TVÆR JÖFNUR:
-turb_const = 8*f*rho./(pi^2*D.^5);
-%LAMINAR STUÐLAR FYRIR SEINUSTU TVÆR JÖFNUR
-lam_const = 128*mu./(pi^2*D.^4);
+
 %MARGFALDA ÞESSA STUÐLA VIÐ TURBULENT OG LAMINAR LOGICAL ARRAYIÐ SVO ÞEIR
 %MUNU BARA MARGFALDAST VIÐ VIÐEIGANDI FLÆÐI OG VIÐEIGANDI q^2 eða q^1 !!!
-studlar = turb_const.*turbulent.*q.^2+lam_const.*laminar.*q;
+studlar = turb_const.*turbulent.*q.^2+lam_const.*laminar.*q.^2;
 %MARGFALDA NÚNA MEÐ FYLKINU 
 eqs8_11 = studla_matrix*studlar;
 %HEILDAR JÖFNU HNEPPI
