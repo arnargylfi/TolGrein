@@ -1,4 +1,4 @@
-function DF = DFP10(q) 
+function [DF, f] = DFP10(q) 
 D = 0.2;
 x = 2.5;
 L = [5; x; 5-x; 1; 1; 1; x; 5-x; 5];
@@ -8,7 +8,6 @@ alpha = 0.3164;
 beta = -0.25;
 Re = (4*rho*q)/(mu*pi*D);
 f = alpha*Re.^beta;
-
 
 DF = [1,-1,0,-1,0,0,0,0,0;
     0,1,-1,0,-1,0,0,0,0;
