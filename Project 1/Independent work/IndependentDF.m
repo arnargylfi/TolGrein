@@ -1,4 +1,4 @@
-function DFattempt = attemptDF(q,d) 
+function DFattempt = IndependentDF(q,d) 
 % d = 2*10^(-3);
 D = [0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;d];
 x = 2.5; 
@@ -10,6 +10,7 @@ beta = -0.25;
 Re = (4*rho*q)./(mu*pi*D);
 f = alpha*Re.^beta; %Darcy friction coefficient. 
 turbulent = Re>= 2000; %Skilar logical array þar sem 1 er allstaðar þar sem það er turbulent 
+% turbulent = ones(11,1); %ALLT TURBULENT 
 laminar = ~turbulent; %skilar öfugu logical array.
 %Reikna núna seinustu jöfnurnar, þar sem þær eru þær einu sem eru
 %breytilegar eftir iðu/lag

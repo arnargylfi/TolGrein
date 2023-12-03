@@ -5,11 +5,11 @@ function q=newtonmult(x0,tol,d,delta_p0)
 q=x0;oldx=x0+2*tol;
 while norm(q-oldx,inf)>tol
    oldx=q;
-   s=-attemptDF(q,d)\attemptF(q,d,delta_p0); %part 10
+   s=-IndependentDF(q,d)\independentF(q,d,delta_p0); %part 10
    q=q+s;
 end
 end
 
 
-%ath. að mögulega taka F og dF fleiri inntaksbreytur.
+%ath. að mögulega taka F og dF fleirix inntaksbreytur.
 
