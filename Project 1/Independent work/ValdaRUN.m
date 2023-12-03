@@ -5,7 +5,7 @@ delta_p0 = 0.58;
 D = [0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;0.2;d];
 rho = 998;
 mu = 1.002*10^(-3);
-q_result = newtonmulti(q0,10^(-7),d,delta_p0);
+q_result = newtonmult(q0,10^(-7),d,delta_p0);
 Reynolds = (4*rho*q_result)./(mu*pi*D);
 q_10=10^-3*[0.6578,0.3558,0.3035,0.3020,0.0523,0.2935,0.3020,0.3543,0.6478];%Viðbót úr dæmi 10 til samanburðar
 
@@ -21,7 +21,7 @@ itert1=0;
 itert0=0;
 
 for i=1:length(pt1range)
-    qp1(i,:) = newtonmulti(q0,10^(-4.5),d,pt1range(i));
+    qp1(i,:) = newtonmult(q0,10^(-4.5),d,pt1range(i));
     q9t1(i)=qp1(i,9) %Ná í dálk 9 vigurinn (fyrir allar raðir)
     q11(i)=qp1(i,11)
     itert1=iter+1;
@@ -30,7 +30,7 @@ Reynolds1 = (4*rho*q9t1)./(mu*pi*D)
 q9t1
 q11
 for i=1:length(pt0range)
-    qp0(i,:) = newtonmulti(q0,10^(-4.5),d,pt0range(i));
+    qp0(i,:) = newtonmult(q0,10^(-4.5),d,pt0range(i));
     q9t0(i)=qp0(i,9); %Ná í dálk 9 vigurinn (fyrir allar raðir)
     itert0=iter+1;
 end
