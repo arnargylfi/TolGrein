@@ -78,9 +78,6 @@ octave-workspace
 *.svg
 *.svgz
 
-# Portable Document Format
-*.pdf
-
 # X BitMap
 *.xbm
 
