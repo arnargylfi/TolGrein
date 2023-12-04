@@ -38,6 +38,7 @@ octave-workspace
 *.jif
 *.jfif
 *.jfi
+*.pdf
 
 # JPEG 2000
 *.jp2
@@ -91,3 +92,6 @@ octave-workspace
 # 3D Images
 *.3dm
 *.max
+
+# zip files
+*.zip
