@@ -7,4 +7,3 @@ figure(2)
 part4_plot(0.4, pi/12, 10)
 % title(...)
 
-figure(3)
