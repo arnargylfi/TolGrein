@@ -2,7 +2,7 @@ s0 = 0;
 theta0 = pi/12;
 T = 10;
 n = 300;
-w = Eulersolver(s0,theta0,T,n)
+w = Eulersolver(s0,theta0,T,n);
 plot(w(:,1),w(:,3))
 xlabel('x [m]')
 ylabel('y [m]')
