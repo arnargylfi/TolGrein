@@ -1,13 +1,13 @@
-m = 0.2;    % Massi
-k = 2.5;    %gormfasti
-L0 = 1;     % óteygð gormalengd
-g = 9.81;   % Þyngdarhröðun
+m = 0.2;    % Massi             [kg]
+k = 2.5;    % gormfasti         [N/m]
+L0 = 1;     % óteygð gormalengd [m]
+g = 9.81;   % Þyngdarhröðun     [m/s^2]
 
 % upphafsgildi
-s0 = 0;
-theta0 = pi/12;
-n = 300;
-T = 40;
+s0 = 0;         % Teygja        [m]
+theta0 = pi/12; % Horn          [rad]
+n = 300;        % Skrefastærð   
+T = 40;         % Lokatími      [sek]
 % leysum með fyrri aðferðum
 w = RKsolver(s0,theta0,T,n);
 
@@ -35,4 +35,34 @@ Energy_error = abs(Einitial-Etotal);
 t = 0:40/300:40;
 plot(t,[Etotal,U,K,W,Energy_error])
 yline(Einitial,'Label','Upphafsorka')
-legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Skekkja')
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]');
+legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap')
+
+% Annað graf með subplots
+figure(2);
+subplot(2,2,1);  % Orkutap
+plot(t,Energy_error);
+title('Orkutap');
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+
+subplot(2,2,2);  % Stöðuorka
+plot(t,U);
+title('Stöðuorka');
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+
+subplot(2,2,3);  % Hreyfiorka
+plot(t,K);
+title('Hreyfiorka')
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+
+subplot(2,2,4);  % Fjaðurorka
+plot(t,W);
+title('Fjaðurorka');
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+
+
