@@ -1,5 +1,5 @@
-s0 = 0;
-theta0 = pi/12;
+s0 = 0.5;
+theta0 = pi/3;
 n = 300;
 epsilon = 10^(-3);
 w = RKsolver(s0,theta0,10,n);
