@@ -1,9 +1,10 @@
 s0 = 0.5;
 theta0 = pi/3;
-n = 300;
+n = 1800;
 epsilon = 10^(-3);
-w = RKsolver(s0,theta0,10,n);
-w2 = RKsolver(s0+epsilon,theta0+epsilon,10,n);
+T = 60;
+w = RKsolver(s0,theta0,T,n);
+w2 = RKsolver(s0+epsilon,theta0+epsilon,T,n);
 x = w(:,1); y = w(:,3);
 x2 = w2(:,1); y2 = w2(:,3);
 
