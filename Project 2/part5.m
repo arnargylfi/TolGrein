@@ -37,7 +37,7 @@ plot(t,[Etotal,U,K,W,Energy_error])
 yline(Einitial,'Label','Upphafsorka')
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
-legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap')
+legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap', 'Location','best');
 
 % Annað graf með subplots
 figure(2);
