@@ -65,4 +65,12 @@ title('Fjaðurorka');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
 
+% Annað graf með heildarorkunni
+figure(3);
+plot(t,Etotal);
+title('Heildarorka');
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+
+
 
