@@ -1,3 +1,4 @@
+tic
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
 L0 = 1;     % óteygð gormalengd [m]
@@ -8,6 +9,7 @@ s0 = 0;         % Teygja        [m]
 theta0 = pi/12; % Horn          [rad]
 T = 40;         % Lokatími      [sek]
 n = 10*T; %Leiðbeiningar samkvæmt verkefnalýsingu, byrjar í 10 T og tvöfaldast í hvert sinn
+
 % leysum með fyrri aðferðum
 % for lykkja sem leysir fyrir allar skrefastærðir og vistar niðurstöðuna
 Energy_error = zeros(8,1);
@@ -43,8 +45,8 @@ end % For
 % xlabel('Skrefafjöldi n');
 % ylabel('Orka [Júl]');
 
-plot(log(nlist), log(Energy_error));
-xlabel('Skrefafjöldi n');
-ylabel('Orka [Júl]');
+loglog(log(nlist), log(Energy_error));
+xlabel('log(Skrefafjöldi n)');
+ylabel('log(Orkutap/skekkja) [log(Júl)]');
 
-
+toc
