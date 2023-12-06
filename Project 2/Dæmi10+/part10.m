@@ -19,10 +19,11 @@ for i = 1:length(y_diff)
     title("Með \epsilon", "interpreter" , "tex");
     skekkjur = sqrt((w2(:,1)-w(:,1)).^2+(w2(:,3)-w(:,3)).^2);
     maxskekkjur(i) = max(skekkjur);
-    sgtitle("y'(0) = " + y_diff(i)+" Hámarks frávik milli ferla = "+ max(skekkjur))
+    sgtitle("y'(0) = " + y_diff(i)+" Hámarks bil milli ferla = "+ max(skekkjur))
     pause(0);
 end % for
+figure(2)
 plot(y_diff,maxskekkjur)
 xlabel("y'(0)")
-ylabel('Hámarks frávik milli tveggja ferla')
+ylabel('Hámarks bil milli tveggja ferla')
 
