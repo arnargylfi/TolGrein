@@ -11,7 +11,7 @@ n = 10*T; %Leiðbeiningar samkvæmt verkefnalýsingu, byrjar í 10 T og tvöfald
 % leysum með fyrri aðferðum
 % for lykkja sem leysir fyrir allar skrefastærðir og vistar niðurstöðuna
 Energy_error = zeros(8,1);
-for i = 1:8
+for i = 1:9
     w = RKsolver(s0,theta0,T,n);
 
     % til að einfalda jöfnurnar, drögum út:
@@ -36,10 +36,15 @@ for i = 1:8
     Energy_error(i) = abs(Einitial-Etotal(n));
     nlist(i) = n;
     n = n*2;
-
 end % For
-plot(1:8, Energy_error);
-xticklabels(arrayfun(@num2str, nlist, 'UniformOutput', false));
+
+% plot(1:9, Energy_error);
+% xticklabels(arrayfun(@num2str, nlist, 'UniformOutput', false));
+% xlabel('Skrefafjöldi n');
+% ylabel('Orka [Júl]');
+
+plot(log(nlist), log(Energy_error));
 xlabel('Skrefafjöldi n');
 ylabel('Orka [Júl]');
+
 
