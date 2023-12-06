@@ -46,6 +46,7 @@ end % For
 % ylabel('Orka [Júl]');
 
 loglog(log(nlist), log(Energy_error));
+grid on
 xlabel('log(Skrefafjöldi n)');
 ylabel('log(Orkutap/skekkja) [log(Júl)]');
 
