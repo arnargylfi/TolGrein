@@ -23,6 +23,5 @@ for k = 1:n+1
     addpoints(path2,x2(k),y2(k));
     set(hLine, 'XData', [0, x(k)], 'YData', [0, y(k)]); % updatea endapunkt línunnar alltaf 
     set(h2Line, 'XData', [0, x2(k)], 'YData', [0, y2(k)]); % updatea endapunkt línunnar alltaf 
-    pause(0.1) %optional, changes speed
     drawnow %set to comment if only final picture is needed
 end
