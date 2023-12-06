@@ -8,7 +8,7 @@ t = 0;      % Upphafstími
 Leq = L0 + (m*g)/k;
 x0 = (Leq+s0)*sin(theta0);
 y0 = -(Leq+s0)*cos(theta0);
-h = T/n;    
+h = T/n;
 w(1,:)=[x0,0,y0,0]; %initial conditions
 
 for i=1:n
