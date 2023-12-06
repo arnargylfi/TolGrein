@@ -31,15 +31,15 @@ for i = 1:8
     Leq = L0 + (m*g)/k;
     x0 = (Leq+s0)*sin(theta0);
     y0 = -(Leq+s0)*cos(theta0);
-    Einitial = -m*g*y0+k*(L0-sqrt(x0^2+y0^2))^2/2;
+    Einitial = m*g*y0+k*(L0-sqrt(x0^2+y0^2))^2/2;
 %     Einitial = Etotal(1);
     Energy_error(i) = abs(Einitial-Etotal(n));
-    n = n*2
+    nlist(i) = n;
+    n = n*2;
 
 end % For
-Energy_error
-plot(Energy_error);
-yline(Einitial,'Label','Orkutap/skekkja');
+plot(1:8, Energy_error);
+xticklabels(arrayfun(@num2str, nlist, 'UniformOutput', false));
 xlabel('Skrefafjöldi n');
 ylabel('Orka [Júl]');
 
