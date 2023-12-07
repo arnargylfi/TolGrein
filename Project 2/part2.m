@@ -40,7 +40,7 @@ figure(2)
 plot(w(:,1),w(:,3))
 xlabel('x [m]')
 ylabel('y [m]')
-title("Pendúll dæmi 2");
+title("Pendúll dæmi 2, T = ");
 % Bæta við upphafspunkti og endapunkti ferils
 hold on
 %plot(w(1,1),w(1,3),'r*');   % Upphafspunktur
@@ -54,7 +54,7 @@ plot(w(1,1),w(1,3), 'b<', 'MarkerSize', 10, 'MarkerFaceColor', 'g');   % Upphafs
 
 plot(w(n+1,1),w(n+1,3),'bsquare', 'MarkerSize', 10, 'MarkerFaceColor', 'r');   % Upphafspunktur
 % text(w(n+1,1),w(n+1,3)+0.03,"t = " + T + " sek", 'fontsize', 14);
-legend('', 't = 0sek', 'Endir', 'Location', 'Best')
+legend('', 't = 0sek', 't = T', 'Location', 'Best')
 
 
 % Hlutfallslega jafn stórir ásar
