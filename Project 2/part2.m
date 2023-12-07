@@ -1,3 +1,5 @@
+close all % Loka öllum gröfum
+
 s0 = 0;
 theta0 = pi/12;
 T = 10;

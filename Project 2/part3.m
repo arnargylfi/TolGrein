@@ -13,7 +13,6 @@ L=sqrt(x_T.^2+y_T.^2); %calculates length of spring at all time steps
     
 set(gca,'FontSize',15); % Fontsize
 
-
 xlabel("x [m]");
 ylabel("y [m]");
 title("Hreyfimynd pendúls hermd með Eulersolver.m");
@@ -55,10 +54,5 @@ end % For
 %     drawnow %set to comment if only final picture is needed
 % end
 
-text(x(1),y(1)+0.03,"t = 0 sek", 'fontsize', 14, 'FontWeight', 'bold', 'color', 'white'); % Upphafspunktur
-text(x(1),y(1)+0.03,"t = 0 sek", 'fontsize', 14, 'color', 'black'); % Upphafspunktur
-text(x(n+1),y(n+1)-0.1,"t = " + T + " sek", 'fontsize', 14, 'color', 'g'); % Endapunktur
-
 % Vista mynd
 exportgraphics(gca,'myndir/part3.pdf');
-
