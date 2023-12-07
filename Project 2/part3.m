@@ -24,3 +24,9 @@ for k = 1:n+1
     pause(0.1) %optional, changes speed
     drawnow %set to comment if only final picture is needed
 end
+
+% Vista mynd
+set(gcf, 'PaperUnits', 'centimeters');
+set(gcf, 'PaperSize', [15 10]);
+set(gcf, 'PaperPosition', [0 0 15 10])
+saveas(gcf,'myndir/part3.pdf')
