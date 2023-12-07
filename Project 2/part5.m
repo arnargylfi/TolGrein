@@ -1,3 +1,4 @@
+close all % Loka öllum gröfum
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
 L0 = 1;     % óteygð gormalengd [m]
@@ -38,10 +39,8 @@ yline(Einitial,'Label','Upphafsorka')
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
 legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap', 'Location','best');
-set(gcf, 'PaperUnits', 'centimeters');
-set(gcf, 'PaperSize', [15 10]);
-set(gcf, 'PaperPosition', [0 0 15 10])
-saveas(gcf,'part5_1.pdf')
+% Vista mynd
+exportgraphics(gcf,'myndir/part5_1.pdf');
 
 % Annað graf með subplots
 figure(2);
@@ -50,10 +49,6 @@ plot(t,Energy_error);
 title('Orkutap');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
-set(gcf, 'PaperUnits', 'centimeters');
-set(gcf, 'PaperSize', [15 10]);
-set(gcf, 'PaperPosition', [0 0 15 10])
-saveas(gcf,'part5_2.pdf')
 
 subplot(2,2,2);  % Stöðuorka
 plot(t,U);
@@ -73,16 +68,14 @@ title('Fjaðurorka');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
 
+% Vista mynd
+exportgraphics(gcf,'myndir/part5_2.pdf');
+
 % Annað graf með heildarorkunni
 figure(3);
 plot(t,Etotal);
 title('Heildarorka');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
-
-set(gcf, 'PaperUnits', 'centimeters');
-set(gcf, 'PaperSize', [15 10]);
-set(gcf, 'PaperPosition', [0 0 15 10])
-saveas(gcf,'part5_3.pdf')
-
-
+% Vista mynd
+exportgraphics(gcf,'myndir/part5_3.pdf');
