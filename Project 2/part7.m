@@ -1,7 +1,7 @@
 tic
 close all % Loka öllum gröfum
 savetime = false;
-tvofaldanir = 9;    % Fjöldi skipta sem við tvöföldum n
+tvofaldanir = 8;    % Fjöldi skipta sem við tvöföldum n
 
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
