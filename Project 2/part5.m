@@ -38,6 +38,10 @@ yline(Einitial,'Label','Upphafsorka')
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
 legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap', 'Location','best');
+set(gcf, 'PaperUnits', 'centimeters');
+set(gcf, 'PaperSize', [15 10]);
+set(gcf, 'PaperPosition', [0 0 15 10])
+saveas(gcf,'part5_1.pdf')
 
 % Annað graf með subplots
 figure(2);
@@ -46,6 +50,10 @@ plot(t,Energy_error);
 title('Orkutap');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
+set(gcf, 'PaperUnits', 'centimeters');
+set(gcf, 'PaperSize', [15 10]);
+set(gcf, 'PaperPosition', [0 0 15 10])
+saveas(gcf,'part5_2.pdf')
 
 subplot(2,2,2);  % Stöðuorka
 plot(t,U);
@@ -72,5 +80,9 @@ title('Heildarorka');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
 
+set(gcf, 'PaperUnits', 'centimeters');
+set(gcf, 'PaperSize', [15 10]);
+set(gcf, 'PaperPosition', [0 0 15 10])
+saveas(gcf,'part5_3.pdf')
 
 
