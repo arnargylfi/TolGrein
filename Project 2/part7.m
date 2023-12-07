@@ -54,6 +54,21 @@ title('Orkutap sem fall af skrefafjölda. Log skala graf');
 % Vista mynd
 exportgraphics(gcf,'myndir/part7_1.pdf');
 
+% Reiknum hallatöluna út frá bestu línu í log-log grafinu
+figure;
+p = polyfit(log(nlist), log(Energy_error), 1); % p(1) inniheldur hallann
+% Plottum upp
+loglog(nlist, Energy_error, 'o-');
+% Höldum
+hold on;
+% Plottum bestu línu 
+loglog(listN_vector, exp(polyval(p, log(nlist))), '-');
+% Sleppum
+grid on;
+hold off;
+% Prentum hallann
+disp(['Hallatala línunnar er: ', num2str(p(1))]);
+
 % Finnum stig aðferðar Runge-Kutta
 logh = log(h);
 halli_og_fasti = Energy_error;
