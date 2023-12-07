@@ -40,7 +40,7 @@ figure(2)
 plot(w(:,1),w(:,3))
 xlabel('x [m]')
 ylabel('y [m]')
-title("Pendúll dæmi 2, T = ");
+title("Pendúll dæmi 2, T = " + T + " sek");
 % Bæta við upphafspunkti og endapunkti ferils
 hold on
 %plot(w(1,1),w(1,3),'r*');   % Upphafspunktur
@@ -54,17 +54,14 @@ plot(w(1,1),w(1,3), 'b<', 'MarkerSize', 10, 'MarkerFaceColor', 'g');   % Upphafs
 
 plot(w(n+1,1),w(n+1,3),'bsquare', 'MarkerSize', 10, 'MarkerFaceColor', 'r');   % Upphafspunktur
 % text(w(n+1,1),w(n+1,3)+0.03,"t = " + T + " sek", 'fontsize', 14);
-legend('', 't = 0sek', 't = T', 'Location', 'Best')
-
+xloc = 0.75; yloc=0.67; width=0.1;height=0.1;
+legend('', 't = 0sek', 't = T','Position', [xloc yloc width height]);% [0.75 0.67 0.1 0.1]);% 'Location', 'bestoutside');
 
 % Hlutfallslega jafn stórir ásar
 daspect([1 1 1])
 % Stilla textastærð
-set(gca,'FontSize',15)
+%set(gca,'FontSize',15)
 hold off
 
 % Vista mynd
-set(gcf, 'PaperUnits', 'centimeters');
-set(gcf, 'PaperSize', [15 10]);
-set(gcf, 'PaperPosition', [0 0 15 10])
-saveas(gcf,'myndir/part2.pdf')
+exportgraphics(gca,'myndir/part2.pdf');
