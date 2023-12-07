@@ -114,10 +114,10 @@ hold on;
 % Plottum bestu línu 
 loglog(nlist, exp(polyval(p, log(nlist))), '-');
 xlabel('Skrefafjöldi n');
-ylabel('Orkuskekkja Error');
+ylabel('Orkutap/Skekkja Error');
 %legend('E vs n','Besta lína');
 legend('E vs n', ['Besta lína (halli: ', num2str(p(1)), ')']);
-title('Log-Log graf af Orkuskekkju (Error) sem fall af skrefafjölda (n)');
+title('Orkutap sem fall af skrefafjölda. Log skala graf. ');
 grid on;
 hold off;
 % Prentum hallann
