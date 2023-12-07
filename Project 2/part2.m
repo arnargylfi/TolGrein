@@ -43,18 +43,18 @@ ylabel('y [m]')
 title("Pendúll dæmi 2");
 % Bæta við upphafspunkti og endapunkti ferils
 hold on
-plot(w(1,1),w(1,3),'r*');   % Upphafspunktur
-text(w(1,1),w(1,3)+0.03,"t = 0 sek", 'fontsize', 14);
+%plot(w(1,1),w(1,3),'r*');   % Upphafspunktur
+%text(w(1,1),w(1,3)+0.03,"t = 0 sek", 'fontsize', 14);
 
-plot(w(n+1,1),w(n+1,3),'r*');   % Upphafspunktur
-text(w(n+1,1),w(n+1,3)+0.03,"t = " + T + " sek", 'fontsize', 14);
+%plot(w(n+1,1),w(n+1,3),'r*');   % Endapunktur
+%text(w(n+1,1),w(n+1,3)+0.03,"t = " + T + " sek", 'fontsize', 14);
 
 plot(w(1,1),w(1,3), 'b<', 'MarkerSize', 10, 'MarkerFaceColor', 'g');   % Upphafspunktur
 % text(w(1,1),w(1,3)+0.03,"t = 0", 'fontsize', 14);
 
 plot(w(n+1,1),w(n+1,3),'bsquare', 'MarkerSize', 10, 'MarkerFaceColor', 'r');   % Upphafspunktur
 % text(w(n+1,1),w(n+1,3)+0.03,"t = " + T + " sek", 'fontsize', 14);
-legend('', 'Upphaf', 'Endir', 'Location', 'Best')
+legend('', 't = 0sek', 'Endir', 'Location', 'Best')
 
 
 % Hlutfallslega jafn stórir ásar
