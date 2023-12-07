@@ -13,8 +13,10 @@ hold on
 plot(w(1,1),w(1,3), 'b<', 'MarkerSize', 10, 'MarkerFaceColor', 'g');   % Upphafspunktur
 % text(w(1,1),w(1,3)+0.03,"t = 0", 'fontsize', 14);
 
-plot(w(n+1,1),w(n+1,3),'bsquare', 'MarkerSize', 10, 'MarkerFaceColor', 'r');   % Upphafspunktur
+plot(w(n+1,1),w(n+1,3),'bsquare', 'MarkerSize', 10, 'MarkerFaceColor', 'r');   % endapunktur
 % text(w(n+1,1),w(n+1,3)+0.03,"t = " + T + " sek", 'fontsize', 14);
+
+legend('', 'Upphaf', 'Endir', 'Location', 'Best')
 
 % Hlutfallslega jafn stórir ásar
 daspect([1 1 1])
