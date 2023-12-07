@@ -38,7 +38,13 @@ title(['Orkugreining pendúls, n = ', num2str(n)]);
 yline(Einitial,'Label','Upphafsorka')
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
-legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja', 'Location','best');
+%legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja', 'Location','best');
+[h_legend, h_objects]=legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja','Location','northwest')
+set(h_legend, 'FontSize', 3);
+pos = get(h_legend, 'Position');
+pos(3) = pos(3) * 1.6; % Reduce width by 25%
+pos(4) = pos(4) * 0.4; % Reduce height by 25%
+set(h_legend, 'Position', pos);
 
 % Annað graf með subplots
 figure(2);
@@ -103,7 +109,13 @@ yline(Einitial,'Label','Upphafsorka')
 title(['Orkugreining pendúls, n = ', num2str(n)]);
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
-legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja', 'Location','best');
+%legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja', 'Location','best');
+[k_legend, k_objects]=legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja','Location','northwest')
+set(k_legend, 'FontSize', 3);
+pos = get(k_legend, 'Position');
+pos(3) = pos(3) * 1.6; % Reduce width by 25%
+pos(4) = pos(4) * 0.4; % Reduce height by 25%
+set(k_legend, 'Position', pos);
 
 % Annað graf með subplots
 figure(4);
