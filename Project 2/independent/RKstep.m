@@ -4,7 +4,6 @@ function w_next = RKstep(w,h, k, m, L0, g)
     k2=derive_w(w+h*k1/2, k, m, L0, g);
     k3=derive_w(w+h*k2/2, k, m, L0, g);
     k4=derive_w(w+h*k3, k, m, L0, g);
-    
     w_next = w + (k1 + 2*k2 + 2*k3 + k4)*h/6;
 end % Function
 

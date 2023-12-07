@@ -1,3 +1,4 @@
+close all % Loka öllum gröfum
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
 L0 = 1;     % óteygð gormalengd [m]
@@ -38,6 +39,7 @@ title(['Orkugreining pendúls, n = ', num2str(n)]);
 yline(Einitial,'Label','Upphafsorka')
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
+
 %legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja', 'Location','best');
 [h_legend, h_objects]=legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja','Location','northwest')
 set(h_legend, 'FontSize', 3);
@@ -46,10 +48,13 @@ pos(3) = pos(3) * 1.6; % Reduce width by 25%
 pos(4) = pos(4) * 0.4; % Reduce height by 25%
 set(h_legend, 'Position', pos);
 
+% Vista mynd
+exportgraphics(gcf,'myndir/part6_1.pdf');
+
 % Annað graf með subplots
 figure(2);
 % Super title
-sgtitle(['n = ', num2str(n)]);
+sgtitle(['Orkuþættir n = ', num2str(n)]);
 subplot(2,2,1);  % Orkutap/Skekkja
 plot(t,Energy_error);
 title('Orkutap/Skekkja');
@@ -73,6 +78,18 @@ plot(t,W);
 title('Fjaðurorka');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
+% Vista mynd
+exportgraphics(gcf,'myndir/part6_2.pdf');
+
+
+% Annað graf með heildarorkunni
+figure(3);
+plot(t,Etotal);
+title(['Heildarorka, n = ', num2str(n)]);
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+% Vista mynd
+exportgraphics(gcf,'myndir/part6_3.pdf');
 
 
 % Aftur með mun stærra n
@@ -103,12 +120,13 @@ Einitial = Etotal(1)
 
 Energy_error = abs(Einitial-Etotal);
 t = 0:40/n:40;
-figure(3);
+figure(4);
 plot(t,[Etotal,U,K,W,Energy_error])
 yline(Einitial,'Label','Upphafsorka')
 title(['Orkugreining pendúls, n = ', num2str(n)]);
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]');
+
 %legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja', 'Location','best');
 [k_legend, k_objects]=legend('Heildarorka','Stöðuorka','Hreyfiorka','Fjaðurorka','Orkutap/Skekkja','Location','northwest')
 set(k_legend, 'FontSize', 3);
@@ -117,10 +135,13 @@ pos(3) = pos(3) * 1.6; % Reduce width by 25%
 pos(4) = pos(4) * 0.4; % Reduce height by 25%
 set(k_legend, 'Position', pos);
 
+% Vista mynd
+exportgraphics(gcf,'myndir/part6_4.pdf');
+
 % Annað graf með subplots
-figure(4);
+figure(5);
 % Super title
-sgtitle(['n = ', num2str(n)]);
+sgtitle(['Orkuþættir n = ', num2str(n)]);
 subplot(2,2,1);  % Orkutap/Skekkja
 plot(t,Energy_error);
 title('Orkutap/Skekkja');
@@ -144,3 +165,15 @@ plot(t,W);
 title('Fjaðurorka');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
+
+% Vista mynd
+exportgraphics(gcf,'myndir/part6_5.pdf');
+
+% Annað graf með heildarorkunni
+figure(6);
+plot(t,Etotal);
+title(['Heildarorka, n = ', num2str(n)]);
+xlabel('Tími [sek]');
+ylabel('Orka [Júl]')
+% Vista mynd
+exportgraphics(gcf,'myndir/part6_6.pdf');

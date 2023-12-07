@@ -1,4 +1,5 @@
 tic
+close all % Loka öllum gröfum
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
 L0 = 1;     % óteygð gormalengd [m]
@@ -49,5 +50,8 @@ ylabel('Orka [Júl]');
 % loglog(log(nlist), log(Energy_error));
 % xlabel('log(Skrefafjöldi n)');
 % ylabel('log(Orkutap/skekkja) [log(Júl)]');
+
+% Vista mynd
+exportgraphics(gcf,'myndir/part8_1.pdf');
 
 toc

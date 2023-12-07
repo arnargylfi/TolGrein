@@ -1,4 +1,4 @@
-function w=RKsolver(s0,theta0,T,n) %might need more inputs later
+function w=RKsolver(s0,theta0,T,n,y_diff) %might need more inputs later
 %calculate initial position x0, y0 and step size h
 m = 0.2;    % Massi
 k = 2.5;    %gormfasti
@@ -8,8 +8,8 @@ t = 0;      % Upphafstími
 Leq = L0 + (m*g)/k;
 x0 = (Leq+s0)*sin(theta0);
 y0 = -(Leq+s0)*cos(theta0);
-h = T/n;
-w(1,:)=[x0,0,y0,0]; %initial conditions
+h = T/n;    
+w(1,:)=[x0,0,y0,y_diff]; %initial conditions
 
 for i=1:n
     t=t+h;
