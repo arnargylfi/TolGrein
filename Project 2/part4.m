@@ -13,7 +13,7 @@ part4_plot(s0, theta0, T, "s_0 = " + s0 + "      \theta_0 = \pi/12      T = " + 
 xloc = 0.7; yloc = 0.3; width = 0.1; height = 0.1;
 legend('', 't = 0sek', 't = T', 'Position', [xloc yloc width height]);
 % Vista mynd
-exportgraphics(gca,'myndir/part4_1.pdf');
+exportgraphics(gcf,'myndir/part4_1.pdf');
 
 % Graf 2
 figure(2)
@@ -23,7 +23,7 @@ part4_plot(s0, theta0, T,"s_0 = " + s0 + "      \theta_0 = -\pi/10      T = " + 
 % Legend
 legend('', 't = 0sek', 't = T', 'Location', 'Best')
 % Vista mynd
-exportgraphics(gca,'myndir/part4_2.pdf');
+exportgraphics(gcf,'myndir/part4_2.pdf');
 
 % Graf 3
 figure(3)
@@ -34,4 +34,4 @@ part4_plot(s0, theta0, T, "s_0 = " + s0 + "      \theta_0 = \pi/9      T = " + T
 xloc = 0.7; yloc = 0.25; width = 0.1; height = 0.1;
 legend('', 't = 0sek', 't = T', 'Position', [xloc yloc width height]);
 % Vista mynd
-exportgraphics(gca,'myndir/part4_3.pdf');
+exportgraphics(gcf,'myndir/part4_3.pdf');

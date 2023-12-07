@@ -11,7 +11,7 @@ trajectory = animatedline('color','r','LineWidth',2)%,'markersize',2);
 spring = animatedline('Color','k','LineWidth',2)
 L=sqrt(x_T.^2+y_T.^2); %calculates length of spring at all time steps
     
-set(gca,'FontSize',15); % Fontsize
+set(gcf,'FontSize',15); % Fontsize
 
 xlabel("x [m]");
 ylabel("y [m]");
@@ -55,4 +55,4 @@ end % For
 % end
 
 % Vista mynd
-exportgraphics(gca,'myndir/part3.pdf');
+exportgraphics(gcf,'myndir/part3.pdf');

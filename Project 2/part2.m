@@ -66,4 +66,4 @@ daspect([1 1 1])
 hold off
 
 % Vista mynd
-exportgraphics(gca,'myndir/part2.pdf');
+exportgraphics(gcf,'myndir/part2.pdf');
