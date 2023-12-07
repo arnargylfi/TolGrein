@@ -11,7 +11,7 @@ part4_plot(s0, theta0, T)
 title("s_0 = " + s0 + "      \theta_0 = \pi/12      T = " + T, 'Interpreter','tex');
 xlabel('Tími [sek]');
 ylabel('Orka [Júl]')
-legend
+
 
 % Graf 2
 figure(2)
