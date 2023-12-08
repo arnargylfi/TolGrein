@@ -1,6 +1,6 @@
 tic
 close all % Loka öllum gröfum
-savetime = true;
+savetime = false;
 tvofaldanir = 8;    % Fjöldi skipta sem við tvöföldum n
 
 m = 0.2;    % Massi             [kg]
@@ -144,5 +144,12 @@ hold off;
 exportgraphics(gcf,'myndir/part7_6.pdf');
 % Prentum hallann
 disp(['Hallatala línunnar er: ', num2str(p(1))]);
+
+% Skrifum gögnin í CSV skrá
+header = {'Tvöfaldanir', 'h', 'n', 'Error'};
+gogn = [[0:tvofaldanir]' h nlist Energy_error];
+cell = [header; num2cell(gogn)];
+filename =  strcat('gogn/part7_', num2str(tvofaldanir), ' tvofaldanir.csv');
+writecell(cell, filename);
 
 toc
