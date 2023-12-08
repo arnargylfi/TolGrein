@@ -5,7 +5,7 @@ tvofaldanir = 4;    % Fjöldi skipta sem við tvöföldum n
 s0_randfjoldi = 3;  % Fjöldi mismunandi upphafsteygja sem við prófum
 theta0_randfjoldi = 3;  % Fjöldi mismunandi upphafshorna sem við prófum
 fjoldi_ferla = s0_randfjoldi*theta0_randfjoldi;
-keyrslur = fjoldi_ferla*tvofaldanir;
+keyrslur = fjoldi_ferla*(tvofaldanir+1);
 
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
@@ -32,6 +32,7 @@ if not(savetime)
     for s_ind = 1:s0_randfjoldi
         for theta_ind = 1:theta0_randfjoldi
             for i = 1:(tvofaldanir+1)
+                h(i) = T/n;
                 w = RKsolver(s0(s_ind),theta0(theta_ind),T,n);
             
                 % til að einfalda jöfnurnar, drögum út:
@@ -69,58 +70,106 @@ if not(savetime)
     close(bar);   % Close waitbar
 end % if
 
-plot(nlist, Energy_error);
-xticklabels(arrayfun(@num2str, nlist, 'UniformOutput', false));
-title('Orkutap/skekkja sem fall af skrefafjölda')
-xlabel('Skrefafjöldi n');
-ylabel('Orkutap/skekkja [Júl]');
+figure("Units","normalized","OuterPosition",[0 0 1 1]);
+subplotnumber = 1;
+sgtitle('Orkutap/skekkja sem fall af skrefafjölda.');
+for s_ind = 1:s0_randfjoldi
+    for theta_ind = 1:theta0_randfjoldi
+        subplot(s0_randfjoldi, theta0_randfjoldi, subplotnumber)
+        loglog(nlist, squeeze(Energy_error(s0_randfjoldi, theta0_randfjoldi, :)));
+        grid on;
+        xticklabels(arrayfun(@num2str, nlist, 'UniformOutput', false));
+        title(strcat('S_0 = ', num2str(s0(s_ind)),'m \theta_0 = ', num2str(theta0(theta_ind))), 'Interpreter','tex');
+        xlabel('Skrefafjöldi n');
+        ylabel('Orkutap/skekkja [Júl]');
+
+        subplotnumber = subplotnumber + 1;
+    end % for theta_ind
+end % for s_ind
+
 
 % Vista mynd
-%exportgraphics(gcf,'myndir/part8_1.pdf');
+if not(savetime)
+    exportgraphics(gcf,'myndir/part8_1.pdf');
+end % if
 
-
-figure(2);
-loglog(nlist, Energy_error);
-grid on
-xlabel('Skrefafjöldi n');
-ylabel('Orkutap/skekkja [Júl]');
-title('Orkutap/skekkja sem fall af skrefafjölda. Log skala graf');
+figure("Units","normalized","OuterPosition",[0 0 1 1]);
+sgtitle('Orkutap/skekkja sem fall af skrefastærð.');
+subplotnumber = 1;
+for s_ind = 1:s0_randfjoldi
+    for theta_ind = 1:theta0_randfjoldi
+        subplot(s0_randfjoldi, theta0_randfjoldi, subplotnumber);
+        loglog(h, squeeze(Energy_error(s0_randfjoldi, theta0_randfjoldi, :)));
+        grid on
+        xticklabels(arrayfun(@num2str, h, 'UniformOutput', false));
+        title(strcat('S_0 = ', num2str(s0(s_ind)),'m \theta_0 = ', num2str(theta0(theta_ind))), 'Interpreter','tex');
+        xlabel('Skrefastærð h');
+        ylabel('Orkutap/skekkja [Júl]');
+        subplotnumber = subplotnumber + 1;
+    end % for theta0
+end % for s0
+    
 % Vista mynd
-%exportgraphics(gcf,'myndir/part8_2.pdf');
-
-
-figure(3);
-loglog(h, Energy_error);
-grid on
-xlabel('Skrefastærð h');
-ylabel('Orkutap/skekkja [Júl]');
-title('Orkutap sem fall af skrefastærð. Log skala graf');
-% Vista mynd
-exportgraphics(gcf,'myndir/part8_3.pdf');
+if not(savetime)
+    exportgraphics(gcf,'myndir/part8_2.pdf');
+end % if
 
 % Finnum stig aðferðar Runge-Kutta
 % Diffrum línu á mynd 1
 diffrid = zeros(tvofaldanir,1);
-stig = 0;
-for i = 1:tvofaldanir
-    diffrid(i) = (log(Energy_error(i+1))-log(Energy_error(i)))/(log(h(i+1))-log(h(i)));
-    stig = stig + diffrid(i);
-end % for
+stig = zeros(s0_randfjoldi, theta0_randfjoldi);
+for s_ind = 1:s0_randfjoldi
+    for theta_ind = 1:theta0_randfjoldi
+        for i = 1:tvofaldanir
+            diffrid(s_ind, theta_ind, i) = (log(Energy_error(s_ind, theta_ind, i+1))-log(Energy_error(s_ind, theta_ind, i)))/(log(h(i+1))-log(h(i)));
+            stig(s_ind, theta_ind) = stig(s_ind, theta_ind) + diffrid(i);
+        end % for tvofaldanir
+        
+        stig(s_ind, theta_ind) = stig(s_ind, theta_ind)/tvofaldanir;
 
-stig/tvofaldanir
+    end % for theta
+end % for s
 
-figure(4);
-plot(0:tvofaldanir-1, diffrid);
-title('Diffrað log(Error)');
-xlabel('Tvöföldun');
-ylabel('Stig aðferðar');
+
+figure("Units","normalized","OuterPosition",[0 0 1 1]);
+sgtitle('Diffrað log(Error)');
+subplotnumber = 1;
+for s_ind = 1:s0_randfjoldi
+    for theta_ind = 1:theta0_randfjoldi
+        subplot(s0_randfjoldi, theta0_randfjoldi, subplotnumber);
+
+        plot(0:tvofaldanir-1, squeeze(diffrid(s_ind, theta_ind, :)));
+        title(strcat('S_0 = ', num2str(s0(s_ind)),'m \theta_0 = ', num2str(theta0(theta_ind))), 'Interpreter','tex');
+        ylabel('Stig aðferðar');
+        xlabel('Tvöföldun');
+        subplotnumber = subplotnumber + 1;
+    end % for theta0
+end % for s0
 
 % Vista mynd
-exportgraphics(gcf,'myndir/part8_4.pdf');
+if not(savetime)
+    exportgraphics(gcf,'myndir/part8_4.pdf');
+end % If
 
 % Skrifum gögnin í CSV skrá
-header = {'Tvöfaldanir', 'h', 'n', 'Error'};
-gogn = [[0:tvofaldanir]' h nlist Energy_error];
+header = {'s0', 'theta0', 'Tvöfaldanir', 'h', 'n', 'Error'};
+% Samkeyra gogn í eitt fylki
+gogn = zeros(keyrslur, 6);
+lina = 0;
+for s_ind = 1:s0_randfjoldi
+    for theta_ind = 1:theta0_randfjoldi
+        for i = 0:tvofaldanir
+            lina = lina + 1;
+            gogn(lina, 1) = s0(s_ind);
+            gogn(lina, 2) = theta0(theta_ind);
+            gogn(lina, 3) = i;
+            gogn(lina, 4) = h(i+1);
+            gogn(lina, 5) = nlist(i+1);
+            gogn(lina, 6) = Energy_error(s_ind, theta_ind, i+1);            
+        end % for tvofaldanir
+    end % for theta
+end % for s
+
 cell = [header; num2cell(gogn)];
 filename =  strcat('gogn/part8_', num2str(tvofaldanir), ' tvofaldanir.csv');
 writecell(cell, filename);
