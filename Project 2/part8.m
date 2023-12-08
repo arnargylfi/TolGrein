@@ -98,6 +98,11 @@ ylabel('Stig aðferðar');
 % Vista mynd
 exportgraphics(gcf,'myndir/part8_4.pdf');
 
-
+% Skrifum gögnin í CSV skrá
+header = {'Tvöfaldanir', 'h', 'n', 'Error'};
+gogn = [[0:tvofaldanir]' h nlist Energy_error];
+cell = [header; num2cell(gogn)];
+filename =  strcat('gogn/part8_', num2str(tvofaldanir), ' tvofaldanir.csv');
+writecell(cell, filename);
 
 toc
