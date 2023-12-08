@@ -115,12 +115,41 @@ hold on;
 loglog(nlist, exp(polyval(p, log(nlist))), '-');
 xlabel('Skrefafjöldi n');
 ylabel('Orkutap/Skekkja Error');
-%legend('E vs n','Besta lína');
-legend('E vs n', ['Besta lína (halli: ', num2str(p(1)), ')']);
+%legend('Error(n)','Besta lína');
+legend('Error(n)', ['Besta lína (halli: ', num2str(p(1)), ')']);
 title('Orkutap sem fall af skrefafjölda. Log skala graf. ');
 grid on;
 hold off;
+% Vista mynd
+exportgraphics(gcf,'myndir/part7_5.pdf');
 % Prentum hallann
 disp(['Hallatala línunnar er: ', num2str(p(1))]);
+
+% Reiknum hallatöluna af Error(h) út frá bestu línu í log-log grafinu
+figure(6);
+p = polyfit(log(h), log(Energy_error), 1); % p(1) inniheldur hallann
+% Plottum upp
+loglog(h, Energy_error, 'o-');
+hold on;
+% Plottum bestu línu 
+loglog(h, exp(polyval(p, log(h))), '-');
+xlabel('Skrefastærð h');
+ylabel('Orkutap/Skekkja Error');
+%legend('Error(h)','Besta lína');
+legend('Error(h)', ['Besta lína (halli: ', num2str(p(1)), ')']);
+title('Orkutap sem fall af skrefastærð. Log skala graf. ');
+grid on;
+hold off;
+% Vista mynd
+exportgraphics(gcf,'myndir/part7_6.pdf');
+% Prentum hallann
+disp(['Hallatala línunnar er: ', num2str(p(1))]);
+
+% Skrifum gögnin í CSV skrá
+header = {'Tvöfaldanir', 'h', 'n', 'Error'};
+gogn = [[0:tvofaldanir]' h nlist Energy_error];
+cell = [header; num2cell(gogn)];
+filename =  strcat('gogn/part7_', num2str(tvofaldanir), ' tvofaldanir.csv');
+writecell(cell, filename);
 
 toc
