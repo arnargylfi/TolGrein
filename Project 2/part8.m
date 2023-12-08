@@ -56,7 +56,7 @@ xlabel('Skrefafjöldi n');
 ylabel('Orkutap/skekkja [Júl]');
 
 % Vista mynd
-exportgraphics(gcf,'myndir/part8_1.pdf');
+%exportgraphics(gcf,'myndir/part8_1.pdf');
 
 
 figure(2);
@@ -66,7 +66,7 @@ xlabel('Skrefafjöldi n');
 ylabel('Orkutap/skekkja [Júl]');
 title('Orkutap/skekkja sem fall af skrefafjölda. Log skala graf');
 % Vista mynd
-exportgraphics(gcf,'myndir/part8_2.pdf');
+%exportgraphics(gcf,'myndir/part8_2.pdf');
 
 
 figure(3);
@@ -76,7 +76,7 @@ xlabel('Skrefastærð h');
 ylabel('Orkutap/skekkja [Júl]');
 title('Orkutap sem fall af skrefastærð. Log skala graf');
 % Vista mynd
-exportgraphics(gcf,'myndir/part8_3.pdf');
+%exportgraphics(gcf,'myndir/part8_3.pdf');
 
 % Finnum stig aðferðar Runge-Kutta
 % Diffrum línu á mynd 1
@@ -96,7 +96,7 @@ xlabel('Tvöföldun');
 ylabel('Stig aðferðar');
 
 % Vista mynd
-exportgraphics(gcf,'myndir/part8_4.pdf');
+%exportgraphics(gcf,'myndir/part8_4.pdf');
 
 
 
