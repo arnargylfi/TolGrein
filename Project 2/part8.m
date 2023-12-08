@@ -1,7 +1,11 @@
 tic
 close all % Loka öllum gröfum
-savetime = true;
-tvofaldanir = 8;    % Fjöldi skipta sem við tvöföldum n
+savetime = false;
+tvofaldanir = 4;    % Fjöldi skipta sem við tvöföldum n
+s0_randfjoldi = 3;  % Fjöldi mismunandi upphafsteygja sem við prófum
+theta0_randfjoldi = 3;  % Fjöldi mismunandi upphafshorna sem við prófum
+fjoldi_ferla = s0_randfjoldi*theta0_randfjoldi;
+keyrslur = fjoldi_ferla*tvofaldanir;
 
 m = 0.2;    % Massi             [kg]
 k = 2.5;    % gormfasti         [N/m]
@@ -9,44 +13,57 @@ L0 = 1;     % óteygð gormalengd [m]
 g = 9.81;   % Þyngdarhröðun     [m/s^2]
 
 % upphafsgildi
-s0 = rand([1 9]); %9 random gildi milli 0 og 1
-         % Teygja        [m]
-theta0 = pi/3*rand([1 9]) ; % 9 random gildi milli 0 og pi/3          [rad]
-T = 20+50*rand([1 9]); %Loka tími á milli 20 sek og 70 sek 
-n = 400; %Leiðbeiningar samkvæmt verkefnalýsingu, byrjar í 10 T og tvöfaldast í hvert sinn
+s0 = 2*L0*(rand([1 s0_randfjoldi])-0.5); %random teygja frá -L0 upp í +L0 % Teygja        [m]
+theta0 = 2*pi*(rand([1 theta0_randfjoldi])-0.5) ; % 9 random gildi milli 0 og pi (hámarkshornið okkar)          [rad]
+T = 40; %Loka tími
+n0 = 10*T; %Leiðbeiningar samkvæmt verkefnalýsingu, byrjar í 10 T og tvöfaldast í hvert sinn
+n = n0;
 
 % leysum með fyrri aðferðum
 % for lykkja sem leysir fyrir allar skrefastærðir og vistar niðurstöðuna
 if not(savetime)
-    Energy_error = zeros(tvofaldanir,1);
+    Energy_error = zeros(s0_randfjoldi, theta0_randfjoldi, tvofaldanir);
     nlist = zeros(tvofaldanir + 1, 1);
     h = zeros(tvofaldanir + 1,1);
-    for i = 1:(tvofaldanir+1)
-        w = RKsolver(s0(i),theta0(i),T(i),n);
-    
-        % til að einfalda jöfnurnar, drögum út:
-        x = w(:,1); dx = w(:,2); y = w(:,3); dy = w(:,4);
-    
-        % Stöðuorka
-        U = m*g*y;
-    
-        % Hreyfiorka 
-        K = 0.5*m*(dx.^2+dy.^2); % verkefnalýsing er vitlaus
-    
-        % Fjaðurorka
-        W = 0.5*k*(L0-sqrt(x.^2+y.^2)).^2;
-    
-        Etotal = U+K+W;
-    
-        Leq = L0 + (m*g)/k;
-        x0 = (Leq+s0(i))*sin(theta0(i));
-        y0 = -(Leq+s0(i))*cos(theta0(i));
-        Einitial = m*g*y0+k*(L0-sqrt(x0^2+y0^2))^2/2;
-    %   Einitial = Etotal(1);
-        Energy_error(i) = abs(Einitial-Etotal(n));
-        nlist(i) = n;
-        n = n*2;
-    end % For
+    progress = 0;
+
+    % For lykkja fyrir öll mismunandi upphafsskilyrði
+    for s_ind = 1:s0_randfjoldi
+        for theta_ind = 1:theta0_randfjoldi
+            for i = 1:(tvofaldanir+1)
+                w = RKsolver(s0(s_ind),theta0(theta_ind),T,n);
+            
+                % til að einfalda jöfnurnar, drögum út:
+                x = w(:,1); dx = w(:,2); y = w(:,3); dy = w(:,4);
+            
+                % Stöðuorka
+                U = m*g*y;
+            
+                % Hreyfiorka 
+                K = 0.5*m*(dx.^2+dy.^2); % verkefnalýsing er vitlaus
+            
+                % Fjaðurorka
+                W = 0.5*k*(L0-sqrt(x.^2+y.^2)).^2;
+            
+                Etotal = U+K+W;
+            
+                Leq = L0 + (m*g)/k;
+                x0 = (Leq+s0(s_ind))*sin(theta0(theta_ind));
+                y0 = -(Leq+s0(s_ind))*cos(theta0(theta_ind));
+                Einitial = m*g*y0+k*(L0-sqrt(x0^2+y0^2))^2/2;
+            %   Einitial = Etotal(1);
+                Energy_error(s_ind, theta_ind,i) = abs(Einitial-Etotal(n));
+                nlist(i) = n;
+                n = n*2;
+        
+                % Progress report
+                progress = progress + 1;
+                fprintf('\b\b\b\b\b %.0f %%', 100*progress/(keyrslur+1));
+            end % For tvofaldanir
+            % Endurstillum skrefafjölda
+            n = n0;
+        end % For s0
+    end % For theta0
 end % if
 
 plot(nlist, Energy_error);
