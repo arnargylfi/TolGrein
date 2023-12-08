@@ -1,11 +1,11 @@
 T = 120;
-n = 36000;
+n = 18000;
 y_diff = 0.1;
 s0 = 0.5;
 theta0 = pi/3;
 epsilon = 10^(-3):10^(-3):0.05;
 threshold = 5*10^(-2); %threshold fyrir hvenær við segjum að þetta er óreglulegt eða eitthvað
-tc_list = zeros(length(epsilon)); %initializa lista fyrir tc
+tc_list = zeros(length(epsilon),1); %initializa lista fyrir tc
 for i = 1:length(epsilon)
       w = RKsolver(s0,theta0,T,n,y_diff);
       w2 = RKsolver(s0+epsilon(i),theta0+epsilon(i),T,n,y_diff);
