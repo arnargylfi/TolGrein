@@ -1,10 +1,10 @@
-T = 30;
-n = 18000;
+T = 120;
+n = 36000;
 y_diff = 0.1;
 s0 = 0.5;
 theta0 = pi/3;
-epsilon = 10^(-3):10^(-3):0.1;
-threshold = 2*10^(-2);
+epsilon = 10^(-3):10^(-3):0.05;
+threshold = 5*10^(-2); %threshold fyrir hvenær við segjum að þetta er óreglulegt eða eitthvað
 tc_list = zeros(length(epsilon)); %initializa lista fyrir tc
 for i = 1:length(epsilon)
       w = RKsolver(s0,theta0,T,n,y_diff);
@@ -16,6 +16,6 @@ for i = 1:length(epsilon)
       i
 end % for
 plot(epsilon,tc_list);
-xlabel("$\epsilon$", "Interpreter", "tex")
-ylabel("$t_c$", "Interpreter", "tex")
+xlabel("\epsilon [m]", "Interpreter", "tex")
+ylabel("t_c [s]", "Interpreter", "tex")
 
