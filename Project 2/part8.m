@@ -58,12 +58,14 @@ if not(savetime)
         
                 % Progress report
                 progress = progress + 1;
-                fprintf('\b\b\b\b\b %.0f %%', 100*progress/(keyrslur+1));
+                %fprintf('\b\b\b\b\b %.0f %%', 100*progress/(keyrslur+1));
+                bar = waitbar(progress/(keyrslur+1), "Loading");
             end % For tvofaldanir
             % Endurstillum skrefafjölda
             n = n0;
         end % For s0
     end % For theta0
+    close bar   % Close waitbar
 end % if
 
 plot(nlist, Energy_error);

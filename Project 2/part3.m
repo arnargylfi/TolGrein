@@ -11,7 +11,7 @@ trajectory = animatedline('color','r','LineWidth',2)%,'markersize',2);
 spring = animatedline('Color','k','LineWidth',2)
 L=sqrt(x_T.^2+y_T.^2); %calculates length of spring at all time steps
     
-set(gcf,'FontSize',15); % Fontsize
+set(gca,'Fontsize',15); % Fontsize
 
 xlabel("x [m]");
 ylabel("y [m]");
