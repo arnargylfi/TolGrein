@@ -28,6 +28,7 @@ if not(savetime)
     progress = 0;
 
     % For lykkja fyrir öll mismunandi upphafsskilyrði
+    bar = waitbar(progress/(keyrslur+1), "Loading", 'Name', 'Part 8');
     for s_ind = 1:s0_randfjoldi
         for theta_ind = 1:theta0_randfjoldi
             for i = 1:(tvofaldanir+1)
@@ -59,13 +60,13 @@ if not(savetime)
                 % Progress report
                 progress = progress + 1;
                 %fprintf('\b\b\b\b\b %.0f %%', 100*progress/(keyrslur+1));
-                bar = waitbar(progress/(keyrslur+1), "Loading");
+                waitbar(progress/(keyrslur+1));
             end % For tvofaldanir
             % Endurstillum skrefafjölda
             n = n0;
         end % For s0
     end % For theta0
-    close bar   % Close waitbar
+    close(bar);   % Close waitbar
 end % if
 
 plot(nlist, Energy_error);
@@ -95,7 +96,7 @@ xlabel('Skrefastærð h');
 ylabel('Orkutap/skekkja [Júl]');
 title('Orkutap sem fall af skrefastærð. Log skala graf');
 % Vista mynd
-%exportgraphics(gcf,'myndir/part8_3.pdf');
+exportgraphics(gcf,'myndir/part8_3.pdf');
 
 % Finnum stig aðferðar Runge-Kutta
 % Diffrum línu á mynd 1
@@ -115,7 +116,7 @@ xlabel('Tvöföldun');
 ylabel('Stig aðferðar');
 
 % Vista mynd
-%exportgraphics(gcf,'myndir/part8_4.pdf');
+exportgraphics(gcf,'myndir/part8_4.pdf');
 
 % Skrifum gögnin í CSV skrá
 header = {'Tvöfaldanir', 'h', 'n', 'Error'};
