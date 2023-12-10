@@ -1,3 +1,4 @@
+import numpy as np
 import matlab.engine
 Matlab = matlab.engine.start_matlab()
 #    This file is part of DEAP.
@@ -25,30 +26,6 @@ from deap import base
 from deap import creator
 from deap import tools
 
-# For heart
-start_x = 0.
-start_y = 5.
-randomseed = 125
-plot = 1
-
-# For lemniscate
-# start_x = 0.
-# start_y = -2.
-# randomseed = 1702139465
-# plot = 2
-
-
-# for backwards alpha
-# start_x = -0.5
-# start_y = -1.5
-# randomseed =
-# plot = 3
-
-# import time
-# randomseed = int(time.time())
-# print("random seed = ", randomseed)
-
-
 creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMin)
 
@@ -59,29 +36,31 @@ toolbox = base.Toolbox()
 #                      which corresponds to integers sampled uniformly
 #                      from the range [0,1] (i.e. 0 or 1 with equal
 #                      probability)
-toolbox.register("attr_bool", random.random)
+toolbox.register("attr_rand", random.random)
 
 # Structure initializers
 #                         define 'individual' to be an individual
 #                         consisting of 100 'attr_bool' elements ('genes')
 toolbox.register("individual", tools.initRepeat, creator.Individual,
-                 toolbox.attr_bool, 6)
+                 toolbox.attr_rand, 8)
 
 # define the population to be a list of individuals
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-# the goal ('fitness') function to be maximized
-def fix(individual):
-    # x = (individual[0] - 0.5)*10
-    # y = (individual[1] - 0.5)*10
-    dx = (individual[0] - 0.5)*20
-    dy = (individual[1] - 0.5)*20
-    k = 0.1 + individual[2]*50
-    m = 0.01 + individual[3]*2
-    L = 0.1 + individual[4]*20
-    T = individual[5]*20
-    return start_x, start_y, dx, dy, k, m, L, T
 
+def fix(individual):
+    x = (individual[0] - 0.5)*20
+    y = (individual[1] - 0.5)*20
+    dx = (individual[2] - 0.5)*20
+    dy = (individual[3] - 0.5)*20
+    k = 0.1 + individual[4]*50
+    m = 0.01 + individual[5]*2
+    L = 0.1 + individual[6]*20
+    T = individual[7]*20
+    return x, y, dx, dy, k, m, L, T
+
+
+# the goal ('fitness') function to be maximized
 def evalOne(individual):
     # print("sdlkj")
     return float(Matlab.progB(*fix(individual))),
@@ -96,29 +75,30 @@ toolbox.register("evaluate", evalOne)
 # register the crossover operator
 toolbox.register("mate", tools.cxTwoPoint)
 
-# register a mutation operator with a probability to
-# flip each attribute/gene of 0.05
-toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
-# toolbox.register("mutate", tools.mutPolynomialBounded,
-#                  low=[0, 0, 0, 0, 0, 0, 0, 0],
-#                  up=[1, 1, 1, 1, 1, 1, 1, 1],
-#                  eta=100,
-#                  indpb=0.3)
+# register a mutation operator
+# eta is Crowding degree of the mutation. A high eta will produce a mutant resembling its parent,
+# while a small eta will produce a solution much more different
+toolbox.register("mutate", tools.mutPolynomialBounded,
+                 low=[0, 0, 0, 0, 0, 0, 0, 0],
+                 up=[1, 1, 1, 1, 1, 1, 1, 1],
+                 eta=100,
+                 indpb=0.3)
+
+popsize = 200
 
 # operator for selecting individuals for breeding the next
 # generation: each individual of the current generation
 # is replaced by the 'fittest' (best) of three individuals
 # drawn randomly from the current generation.
-toolbox.register("select", tools.selTournament, tournsize=3)
+toolbox.register("select", tools.selBest, k=int(np.log(popsize)))
 
-#----------
 
-def main():
-    random.seed(randomseed)
+if __name__ == "__main__":
+    # random.seed(64)
 
     # create an initial population of 300 individuals (where
-    # each individual is a list of integers)
-    pop = toolbox.population(n=300)
+    # each individual is a list of floats)
+    pop = toolbox.population(n=popsize)
 
     # CXPB  is the probability with which two individuals
     #       are crossed
@@ -147,40 +127,46 @@ def main():
         g = g + 1
         print("-- Generation %i --" % g)
 
-        # Select the next generation individuals
-        offspring = toolbox.select(pop, len(pop))
-        # Clone the selected individuals
-        offspring = list(map(toolbox.clone, offspring))
+        # Select the best from the generation. These will survive and mate
+        # best = toolbox.select(pop)
+        best = tools.selBest(pop, 1)
 
-        # Apply crossover and mutation on the offspring
-        for child1, child2 in zip(offspring[::2], offspring[1::2]):
+        # create equal amount of new random individuals
+        # randos = toolbox.population(n =int(popsize/100))
+        randos = []
 
-            # cross two individuals with probability CXPB
-            if random.random() < CXPB:
-                toolbox.mate(child1, child2)
+        parents = randos + best
+        # a list to hold the offspring
+        offspring = []
 
-                # fitness values of the children
-                # must be recalculated later
-                del child1.fitness.values
-                del child2.fitness.values
+        for i in range(int((popsize - len(parents))/2)):
+            parent1 = random.choice(parents)
+            parent2 = random.choice(parents)
+
+            child1, child2 = [toolbox.clone(ind) for ind in (parent1, parent2)]
+            tools.cxBlend(child1, child2, 0.1)
+            del child1.fitness.values
+            del child2.fitness.values
+            offspring.append(child1)
+            offspring.append(child2)
 
         for mutant in offspring:
-
             # mutate an individual with probability MUTPB
             if random.random() < MUTPB:
-                toolbox.mutate(mutant)
-                del mutant.fitness.values
 
+                toolbox.mutate(mutant)
+                # del mutant.fitness.values
+
+        new_individuals = randos + offspring
         # Evaluate the individuals with an invalid fitness
-        invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
+        invalid_ind = [ind for ind in new_individuals if not ind.fitness.valid]
         fitnesses = map(toolbox.evaluate, invalid_ind)
         for ind, fit in zip(invalid_ind, fitnesses):
             ind.fitness.values = fit
 
         print("  Evaluated %i individuals" % len(invalid_ind))
-
-        # The population is entirely replaced by the offspring
-        pop[:] = offspring
+        # The population is entirely replaced by the offspring and parents
+        pop[:] = best + new_individuals
 
         # Gather all the fitnesses in one list and print the stats
         fits = [ind.fitness.values[0] for ind in pop]
@@ -195,12 +181,9 @@ def main():
         print("  Avg %s" % mean)
         print("  Std %s" % std)
         print("  Best: ", fix(tools.selBest(pop, 1)[0]))
-        Matlab.plotstuff(*fix(tools.selBest(pop, 1)[0]), plot)
+        Matlab.plotstuff(*fix(tools.selBest(pop, 1)[0]), 3)
 
     print("-- End of (successful) evolution --")
 
     best_ind = tools.selBest(pop, 1)[0]
-    print("Best individual is %s, %s" % (best_ind, best_ind.fitness.values))
-
-if __name__ == "__main__":
-    main()
+    print("Best individual is %s, %s" % (fix(best_ind), best_ind.fitness.values))
