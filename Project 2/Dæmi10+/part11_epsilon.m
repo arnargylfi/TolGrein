@@ -1,10 +1,12 @@
 T = 120;
 n = 18000;
+%y_diff = 0.1;
 y_diff = 0;
-% s0 = 0.5;
+%s0 = 0.5;
 s0 = 0;
 theta0 = pi/12;
-% theta0 = pi/3;
+%theta0 = pi/3;
+theta0_string={'\pi/3','\pi/12'};
 epsilon = 10^(-3):10^(-3):0.05;
 threshold = 5*10^(-2); %threshold fyrir hvenær við segjum að þetta er óreglulegt eða eitthvað
 tc_list = zeros(length(epsilon),1); %initializa lista fyrir tc
@@ -21,7 +23,20 @@ for i = 1:length(epsilon)
       tc_list(i) = tc;
       i
 end % for
-plot(epsilon,tc_list);
-xlabel("\epsilon [m]", "Interpreter", "tex")
-ylabel("t_c [s]", "Interpreter", "tex")
-
+plot(epsilon(1:25),tc_list(1:25)); % Plottum upp sirka hálfan tc ferilinn vegna þess að hann nær núlli fljótt.
+%xlabel("\epsilon [m]", "Interpreter", "tex")
+%ylabel("t_c [s]", "Interpreter", "tex")
+xlabel('\epsilon [m]');
+ylabel('t_c [s]');
+title('Tími t_c sem fall af upphafsstöðumun \epsilon.','FontSize',12);
+textString1 = "y'(0) = " + y_diff;
+textString2 = "s_0 = " + s0;
+textString3 = "theta_0 = " + theta0_string(2);
+%text(1, -1, textString, 'FontSize', 12);
+fig = gcf;
+text('Units', 'normalized', 'Position', [0.72 0.88], 'String', 'Upphafsskilyrði:', 'FontSize', 10);
+text('Units', 'normalized', 'Position', [0.75 0.8], 'String', textString1, 'FontSize', 10);
+text('Units', 'normalized', 'Position', [0.75 0.72], 'String', textString2, 'FontSize', 10);
+text('Units', 'normalized', 'Position', [0.75 0.64], 'String', textString3, 'FontSize', 10);
+grid on;
+exportgraphics(gcf,'C:/Users/valdi/OneDrive/Documents/MATLAB/Lota2/part11_epsilon_s0_0.pdf');
