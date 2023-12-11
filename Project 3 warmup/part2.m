@@ -2,6 +2,13 @@
 lina_0 = [1, 0, 0]; b_0 = 2;
 lina_n = [0, 0, 1]; b_n = 3;
 
-[x, y] = lausn(lina_0, b_0, lina_n, b_n, 10);
+[x, y_lausn] = lausn(lina_0, b_0, lina_n, b_n, 10);
+y_gefid = 0.96334*exp(x) + 1.0367*exp(-x);
 
-plot(x,y)
+figure(1)
+hold on
+plot(x,y_lausn)
+plot(x, y_gefid)
+hold off
+
+
