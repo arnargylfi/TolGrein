@@ -18,7 +18,7 @@ lina_n = [0, 0, 1]; b_n = y_out;    % Seinustu 3 stök í linu n fylki A
 [y2, x] = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
-y2_gefid = D2_lausn(x)';
+y2_gefid = D2_lausn(x);
 
 % Plottum og vistum
 figure;
@@ -48,7 +48,7 @@ lina_n = [-1, 4, -3]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 y3 = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
-y3_gefid = D3_lausn(x)';
+y3_gefid = D3_lausn(x);
 % Plottum og vistum
 figure;
 plot(x,y3, x,y3_gefid);
@@ -73,7 +73,7 @@ lina_n = [1, -4, 3+2*h]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 y4 = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
-y4_gefid = D4_lausn(x)';
+y4_gefid = D4_lausn(x);
 % Plottum og vistum
 figure(3);
 plot(x,y4, x,y4_gefid);
