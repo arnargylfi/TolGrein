@@ -2,7 +2,7 @@
 in = 0; % Bil vinstri punktur
 out = 1; % Bil hægri punktur
 
-n = 10; % Hversu mörg bil viljum við
+n = 100; % Hversu mörg bil viljum við
 h = abs(in-out)/n;
 
 disp("Dæmi 2, Dirichlet lausn:");
@@ -29,7 +29,7 @@ title("Dirichlet lausn");
 legend("Dirichlet", "Gefin lausn");
 
 % Vista mynd
-exportgraphics(gcf,'myndir/dirichlet_Lausn.pdf');
+exportgraphics(gcf,'myndir/dirichlet_lausn.pdf');
 
 
 disp("Dæmi 3, Neumann lausn:");
@@ -55,7 +55,7 @@ title("Neumann lausn");
 legend("Neumann", "Gefin lausn");
 
 % Vista mynd
-exportgraphics(gcf,'myndir/neumann_Lausn.pdf');
+exportgraphics(gcf,'myndir/neumann_lausn.pdf');
 
 
 disp("Dæmi 4, Robin lausn:");
@@ -79,4 +79,4 @@ title("Robin lausn");
 legend("Robin", "Gefin lausn");
 
 % Vista mynd
-exportgraphics(gcf,'myndir/robin_Lausn.pdf');
+exportgraphics(gcf,'myndir/robin_lausn.pdf');
