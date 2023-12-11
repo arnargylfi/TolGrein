@@ -12,7 +12,7 @@ y_out = 3;  %y(out)
 lina_0 = [1, 0, 0]; b_0 = y_in;
 lina_n = [0, 0, 1]; b_n = y_out;    % Seinustu 3 stök í linu n fylki A
 
-[x, y2] = lausn(lina_0, b_0, lina_n, b_n, 10);
+[y2, x] = lausn(lina_0, b_0, lina_n, b_n, 10);
 
 % Setjum upp gefnu lausnina
 y2_gefid = D2_lausn(x)';
@@ -35,13 +35,14 @@ disp("Dæmi 3, Neumann lausn:");
 % Setjum upp jaðarskilyrði
 y_diff_in = 1;
 y_diff_out = -2;
-% Framleiðum fylkið A
-A(1,1) = -3;A(1,2) = 4; A(1,3) = -1;
-A(n+1,n-1) = 1;A(n+1, n)=-4;A(n+1,n+1)=3;
-% Framleiðum b vigurinn
-b(1,1)=2*h;b(n+1,1)=4*h;
+
+% Fylki A og vigur b
+lina_0 = [-3, 4, -1]; b_0 = 2*h;
+lina_n = [1, -4, 3]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
+
 % Leysum
-y = A\b;
+y3 = lausn(lina_0, b_0, lina_n, b_n, 10);
+
 % Setjum upp gefnu lausnina
 y3_gefid = D3_lausn(x);
 % Plottum og vistum
