@@ -1,3 +1,5 @@
+% Lokum öllum gröfum
+close all
 % Setjum inn breytur
 in = 0; % Bil vinstri punktur
 out = 1; % Bil hægri punktur
@@ -19,13 +21,14 @@ lina_n = [0, 0, 1]; b_n = y_out;    % Seinustu 3 stök í linu n fylki A
 y2_gefid = D2_lausn(x)';
 
 % Plottum og vistum
-figure(1);
+figure;
 p1 = plot(x,y2, x,y2_gefid);
 %p(1).LineWidth = 10;
 %p(2).LineWidth = 5;
 xlabel('x');
 ylabel('y');
-title("Dirichlet lausn");
+skekkja = rms(y2_gefid-y2);
+title("Dirichlet lausn, skekkja: " + skekkja);
 legend("Dirichlet", "Gefin lausn");
 
 % Vista mynd
@@ -45,13 +48,14 @@ lina_n = [-1, 4, -3]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 y3 = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
-y3_gefid = D3_lausn(x);
+y3_gefid = D3_lausn(x)';
 % Plottum og vistum
-figure(2);
+figure;
 plot(x,y3, x,y3_gefid);
 xlabel('x')
 ylabel('y')
-title("Neumann lausn");
+skekkja = rms(y3_gefid-y3);
+title("Neumann lausn, skekkja: " + skekkja);
 legend("Neumann", "Gefin lausn");
 
 % Vista mynd
@@ -69,13 +73,14 @@ lina_n = [1, -4, 3+2*h]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 y4 = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
-y4_gefid = D4_lausn(x);
+y4_gefid = D4_lausn(x)';
 % Plottum og vistum
 figure(3);
 plot(x,y4, x,y4_gefid);
 xlabel('x')
 ylabel('y')
-title("Robin lausn");
+skekkja = rms(y4_gefid-y4);
+title("Robin lausn, skekkja: " + skekkja);
 legend("Robin", "Gefin lausn");
 
 % Vista mynd
