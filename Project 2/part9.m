@@ -21,11 +21,11 @@ hold on;
 plot(w(n+1,1),w(n+1,3),'bsquare', 'MarkerSize', 5, 'MarkerFaceColor', 'k');   % endapunktur1
 plot(w2(n+1,1),w2(n+1,3),'bsquare', 'MarkerSize', 5, 'MarkerFaceColor', 'r');   % endapunktur2
 
-title('Spor tveggja pendúla með misteygða upphafsstöðu gorms (s0 vs s0+epsilon)','fontsize',10);
+title('Spor tveggja pendúla með misteygða upphafsstöðu gorms (s_0 vs s_0+\epsilon)','fontsize',10, 'Interpreter','tex');
 ylabel('Y-axis [m]'); % Label for the y-axis
 xlabel('X-axis [m]'); % Label for the x-axis
 %xloc = 0.7; yloc = 0.3; width = 0.1; height = 0.1;
-legend('','','Pend. 1 (s0=0.5m)','Pend. 2 (s0=0.5+0.001m)','','','t=T (Pend.1)', 't=T (Pend.2)', 'Location', 'northeast');%[xloc yloc width height]);
+legend('','','Pend. 1 (s0=0.5m)','Pend. 2 (s0=0.5+0.001m)','','','t=T (Pend.1)', 't=T (Pend.2)', 'Location', 'northwest');%[xloc yloc width height]);
 
 
 for k = 1:n+1
@@ -37,8 +37,21 @@ for k = 1:n+1
     addpoints(path2,x2(k),y2(k));
     set(hLine, 'XData', [0, x(k)], 'YData', [0, y(k)]); % updatea endapunkt línunnar alltaf 
     set(h2Line, 'XData', [0, x2(k)], 'YData', [0, y2(k)]); % updatea endapunkt línunnar alltaf 
-    drawnow %set to comment if only final picture is needed
+%     drawnow %set to comment if only final picture is needed
 end
 hold off;
-exportgraphics(gcf,'Myndir/Dæmi 9/part9_Trajectory.pdf');
+% exportgraphics(gcf,'Myndir/Dæmi 9/part9_Trajectory.pdf');
+
+figure(2)
+timespace = linspace(0, T, n+1);
+plot(timespace, sqrt((w(:,1) - w2(:,1)).^2 + (w(:,3) - w2(:,3)).^2))
+title(["Fjarlægð milli spora tveggja pendúla", ...
+    "með misteygða upphafsstöðu gorms (s_0 vs s_0+\epsilon)"], ...
+    'fontsize',10, 'Interpreter', 'tex');
+ylabel('Fjarlægð [m]'); % Label for the y-axis
+xlabel('Tími [s]'); % Label for the x-axis
+%xloc = 0.7; yloc = 0.3; width = 0.1; height = 0.1;
+% legend(, 'Location', 'northeast');%[xloc yloc width height]);
+% exportgraphics(gcf,'Myndir/Dæmi 9/part9_Dist.pdf');
+
 
