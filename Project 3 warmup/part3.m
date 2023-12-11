@@ -1,7 +1,16 @@
+n = 100;
+h = 1/n;
+lina_0 = [-3, 4, -1]; b_0 = 2*h;
+lina_n = [-1, 4, -3]; b_n = 4*h;
+[y_lausn, x] = lausn(lina_0, b_0, lina_n, b_n, n);
+y_gefid = -1.0074*exp(x) - 2.0074*exp(-x); 
 
-lina_0 = [1, 0, 0]; b_0 = 2;
-lina_n = [0, 0, 1]; b_n = 3;
+figure(2)
+clf
+hold on
+plot(x,y_lausn)
+plot(x, y_gefid)
+hold off
 
-[x, y] = lausn(lina_0, b_0, lina_n, b_n, 10);
 
-plot(x,y)
+
