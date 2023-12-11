@@ -34,8 +34,11 @@ b(n+1, 1) = y_out;
 disp("Dæmi 2, Dirichlet lausn:");
 dirichletlausn(A, b, y_in, y_out)
 
+y_diff_in = 1;
+y_diff_out = -2;
+
 disp("Dæmi 3, Neumann lausn:");
-neumannlausn(A, b, y_in, y_out)
+neumannlausn(A, b, y_diff_in, y_diff_out)
 
 disp("Dæmi 4, Robin lausn:");
 robinlausn(A, b, y_in, y_out)
