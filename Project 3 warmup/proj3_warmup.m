@@ -3,6 +3,7 @@ in = 0; % Bil vinstri punktur
 out = 1; % Bil hægri punktur
 
 n = 10; % Hversu mörg bil viljum við
+h = abs(in-out)/n;
 
 disp("Dæmi 2, Dirichlet lausn:");
 % Jaðarskilyrði
@@ -12,7 +13,7 @@ y_out = 3;  %y(out)
 lina_0 = [1, 0, 0]; b_0 = y_in;
 lina_n = [0, 0, 1]; b_n = y_out;    % Seinustu 3 stök í linu n fylki A
 
-[y2, x] = lausn(lina_0, b_0, lina_n, b_n, 10);
+[y2, x] = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
 y2_gefid = D2_lausn(x)';
@@ -41,7 +42,7 @@ lina_0 = [-3, 4, -1]; b_0 = 2*h;
 lina_n = [-1, 4, -3]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 
 % Leysum
-y3 = lausn(lina_0, b_0, lina_n, b_n, 10);
+y3 = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
 y3_gefid = D3_lausn(x);
@@ -65,7 +66,7 @@ lina_0 = [-3-2*h, 4, -1]; b_0 = 2*h;
 lina_n = [1, -4, 3+2*h]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 
 % Leysum
-y4 = lausn(lina_0, b_0, lina_n, b_n, 10);
+y4 = lausn(lina_0, b_0, lina_n, b_n, n, h);
 
 % Setjum upp gefnu lausnina
 y4_gefid = D4_lausn(x);

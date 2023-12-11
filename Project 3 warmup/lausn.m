@@ -1,5 +1,4 @@
-function [y, x] = lausn(lina_0, b_0, lina_n, b_n, n)
-h = 1/n; % Bilstærð
+function [y, x] = lausn(lina_0, b_0, lina_n, b_n, n, h)
 % Framleiðum fylkið A
 hornalinustak = -h^2-2;
 A = geraA(n, hornalinustak);
