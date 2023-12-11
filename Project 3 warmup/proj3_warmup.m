@@ -38,7 +38,7 @@ y_diff_out = -2;
 
 % Fylki A og vigur b
 lina_0 = [-3, 4, -1]; b_0 = 2*h;
-lina_n = [1, -4, 3]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
+lina_n = [-1, 4, -3]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
 
 % Leysum
 y3 = lausn(lina_0, b_0, lina_n, b_n, 10);
@@ -47,7 +47,7 @@ y3 = lausn(lina_0, b_0, lina_n, b_n, 10);
 y3_gefid = D3_lausn(x);
 % Plottum og vistum
 figure(2);
-plot(x,y, x,y3_gefid);
+plot(x,y3, x,y3_gefid);
 xlabel('x')
 ylabel('y')
 title("Neumann lausn");
@@ -59,18 +59,19 @@ exportgraphics(gcf,'myndir/neumann_Lausn.pdf');
 
 disp("Dæmi 4, Robin lausn:");
 % Setjum upp jaðarskilyrði
-% Framleiðum fylkið A
-A(1,1) = -3-2*h;A(1,2) = 4; A(1,3) = -1;
-A(n+1,n-1) = 1;A(n+1, n)=-4;A(n+1,n+1)=3;
-% Framleiðum b vigurinn
-b(1,1)=2*h;b(n+1,1)=4*h;
+
+% Fylki A og vigur b
+lina_0 = [-3-2*h, 4, -1]; b_0 = 2*h;
+lina_n = [1, -4, 3+2*h]; b_n = 4*h;    % Seinustu 3 stök í linu n fylki A
+
 % Leysum
-y = A\b;
+y4 = lausn(lina_0, b_0, lina_n, b_n, 10);
+
 % Setjum upp gefnu lausnina
 y4_gefid = D4_lausn(x);
 % Plottum og vistum
 figure(3);
-plot(x,y, x,y4_gefid);
+plot(x,y4, x,y4_gefid);
 xlabel('x')
 ylabel('y')
 title("Robin lausn");
