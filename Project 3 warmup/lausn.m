@@ -12,7 +12,7 @@ b(1, 1) = b_0;
 b(n+1, 1) = b_n;
 
 % Gerum x
-x = linspace(0, 1, n+1);
+x = linspace(0, 1, n+1)';
 % Finnum lausn y
 y = A\b;
 end
