@@ -10,21 +10,12 @@ y_out = 3;  %y(out)
 
 h = (out-in)/n; % Bilstærð
 
-% Framleiðum A fylkið
-A = sparse(n+1);
-
-% Setjum inn fyrstu og seinustu línuna
-
-% Fyllum inn í aðrar línur
+% Framleiðum fylkið A
 hornalinustak = h^2-2;
-for rowcol = 2:n
-        % Hornalínan hefur h^2 -2 og hægra megin og vinstra megin við
-        % hornalínustakið er 1
-        A(rowcol, rowcol-1) = 1;
-        A(rowcol, rowcol) = hornalinustak;
-        A(rowcol, rowcol) = 1;
-end % for rowcol (því row = col)
-
+A = geraA(n, hornalinustak);
+% Setjum inn fyrstu og seinustu línuna
+A(1,1) = 1;
+A(n+1, n+1) = 1;
 
 % Framleiðum b vigurinn
 b = sparse(n+1, 1);
@@ -32,13 +23,34 @@ b(1, 1) = y_in;
 b(n+1, 1) = y_out;
 
 disp("Dæmi 2, Dirichlet lausn:");
-dirichletlausn(A, b, y_in, y_out)
+x = linspace(in, out, n+1);
+y = A\b;
+
+% Setjum upp gefnu lausnina
+
+% Plottum og vistum
+figure(1);
+plot(x,y);
+xlabel('x')
+ylabel('y')
+title("Dirichlet lausn");
+
+% Vista mynd
+exportgraphics(gcf,'myndir/dirichlet_Lausn.pdf');
+
+
 
 y_diff_in = 1;
 y_diff_out = -2;
 
 disp("Dæmi 3, Neumann lausn:");
-neumannlausn(A, b, y_diff_in, y_diff_out)
+% Setjum upp jaðarskilyrði
+% Framleiðum fylkið A
+% Setjum upp gefnu lausnina
+% Plottum og vistum
 
 disp("Dæmi 4, Robin lausn:");
-robinlausn(A, b, y_in, y_out)
+% Setjum upp jaðarskilyrði
+% Framleiðum fylkið A
+% Setjum upp gefnu lausnina
+% Plottum og vistum
