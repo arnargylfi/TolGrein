@@ -2,7 +2,7 @@
 in = 0; % Bil vinstri punktur
 out = 1; % Bil hægri punktur
 
-n = 10; % Hversu mörg bil viljum við
+n = 50; % Hversu mörg bil viljum við
 
 % Jaðarskilyrði
 y_in = 2;    %y(in)
@@ -27,24 +27,24 @@ x = linspace(in, out, n+1);
 y = A\b;
 
 % Setjum upp gefnu lausnina
+y2_gefid = D2_lausn(x);
 
 % Plottum og vistum
 figure(1);
-plot(x,y);
+plot(x,y, x,y2_gefid);
 xlabel('x')
 ylabel('y')
 title("Dirichlet lausn");
+legend("Dirichlet", "Gefin lausn");
 
 % Vista mynd
 exportgraphics(gcf,'myndir/dirichlet_Lausn.pdf');
 
 
-
-y_diff_in = 1;
-y_diff_out = -2;
-
 disp("Dæmi 3, Neumann lausn:");
 % Setjum upp jaðarskilyrði
+y_diff_in = 1;
+y_diff_out = -2;
 % Framleiðum fylkið A
 % Setjum upp gefnu lausnina
 % Plottum og vistum
