@@ -34,6 +34,6 @@ clf
 loglog(ns, svar);
 xlabel('n');ylabel('Skekkja')
 title("Neumann jaðarskilyrði - Skekkja sem fall af n")
-% exportgraphics(gcf, "myndir/part3loglog.pdf")
+exportgraphics(gcf, "myndir/part3loglog.pdf")
 
 

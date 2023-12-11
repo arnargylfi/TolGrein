@@ -34,6 +34,6 @@ clf
 loglog(ns, svar);
 xlabel('n');ylabel('Skekkja')
 title("Dirichlet jaðarskilyrði - Skekkja sem fall af n")
-% exportgraphics(gcf, "myndir/part2loglog.pdf")
+exportgraphics(gcf, "myndir/part2loglog.pdf")
 
 
