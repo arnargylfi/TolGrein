@@ -4,27 +4,15 @@ out = 1; % Bil hægri punktur
 
 n = 10; % Hversu mörg bil viljum við
 
+disp("Dæmi 2, Dirichlet lausn:");
 % Jaðarskilyrði
 y_in = 2;    %y(in)
 y_out = 3;  %y(out)
 
-h = (out-in)/n; % Bilstærð
+lina_0 = [1, 0, 0]; b_0 = y_in;
+lina_n = [0, 0, 1]; b_n = y_out;    % Seinustu 3 stök í linu n fylki A
 
-% Framleiðum fylkið A
-hornalinustak = -h^2-2;
-A = geraA(n, hornalinustak);
-% Setjum inn fyrstu og seinustu línuna
-A(1,1) = 1;
-A(n+1, n+1) = 1;
-
-% Framleiðum b vigurinn
-b = sparse(n+1, 1);
-b(1, 1) = y_in;
-b(n+1, 1) = y_out;
-
-disp("Dæmi 2, Dirichlet lausn:");
-x = linspace(in, out, n+1);
-y2 = A\b;
+[x, y2] = lausn(lina_0, b_0, lina_n, b_n, 10);
 
 % Setjum upp gefnu lausnina
 y2_gefid = D2_lausn(x)';
