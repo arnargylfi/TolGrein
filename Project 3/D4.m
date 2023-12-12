@@ -39,7 +39,7 @@ for j = 1:n
     W(end, j) = 0;
     W(:,j+1) = A\W(:,j);
     W = sparse(W);
-    spy(W)
+    j
 end
 
 
