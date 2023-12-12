@@ -1,3 +1,4 @@
+close all
 format long
 T= 10^-2;   % sek
 m = 5000;   % skrefafjöldi x
@@ -11,9 +12,8 @@ ylabel("t [s]")
 zlabel("V [V]")
 exportgraphics(gcf,"Myndir/D5.pdf")
 
-% HREYFIMYND 
-
-
+% HREYFIMYND
+figure(2);
 for j = 1:n+1
     clf;
     hold on
@@ -24,3 +24,5 @@ for j = 1:n+1
     ylabel('V [V]')
     title("t = " +t(j)+"s")
 end % for
+
+disp("Keyrslu lokið");
