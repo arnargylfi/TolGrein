@@ -12,15 +12,15 @@ zlabel("V [V]")
 
 % HREYFIMYND 
 
-
-for j = 1:n+1
-    clf;
-    hold on
-    w = W(:,j);
-    plot(x,w)
-    ylim([0,max(max(W))])
-    xlabel('x[m]')
-    ylabel('V [V]')
-    title("t = " +t(j)+"s")
-    pause(0.1);
-end % for
+% 
+% for j = 1:n+1
+%     clf;
+%     hold on
+%     w = W(:,j);
+%     plot(x,w)
+%     ylim([0,max(max(W))])
+%     xlabel('x[m]')
+%     ylabel('V [V]')
+%     title("t = " +t(j)+"s")
+%     pause(0.1);
+% end % for

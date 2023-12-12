@@ -8,13 +8,15 @@ k = T/n;
 beta = -d*k/(h^2);
 alpha = 1 + k - 2*beta;
 % Reikna A: 
-A = diag(alpha*ones(1,m+1)) +... %Miðju hornalína
-    diag(beta*ones(1,m),1)+... %hægri/uppi hornalína
-    diag(beta*ones(1,n),-1); % vinstri/niðri hornalína
+A = sparse(m+1,m+1);
+A(1:2+m:(m+1)^2) = alpha;
+A(m+2:2+m:(m+1)^2) = beta;
+A(2:2+m:(m+1)^2) = beta;
+spy(A)
+
 % laga efstu og neðstu línuna 
 A(1, 1:2) = [1, 0];
 A(end, end-1:end) = [0, 1];
-
 %Reikna b:
 %Geri vigurinn x
 x = 0:h:L;
@@ -36,6 +38,8 @@ for j = 1:n
     W(1, j) = 0;
     W(end, j) = 0;
     W(:,j+1) = A\W(:,j);
+    W = sparse(W);
+    spy(W)
 end
 
 
