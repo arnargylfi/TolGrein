@@ -1,3 +1,4 @@
+close all
 format long
 T= 10^-2;   % sek
 m = 100;    % skrefafjöldi x
@@ -6,10 +7,10 @@ n = 100;    % skrefafjöldi t
 max_spenna = max(W(:, end))
 % Teikna 3D mynd
 mesh(x, t, W')
-xlabel("x [m]")
-ylabel("t [s]")
-zlabel("V [V]")
-% exportgraphics(gcf,"Myndir/D4.pdf")
+xlabel("x [m]");
+ylabel("t [s]");
+zlabel("V [V]");
+exportgraphics(gcf,"Myndir/D4.pdf")
 
 % HREYFIMYND 
 
