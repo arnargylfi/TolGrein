@@ -39,7 +39,10 @@ for j = 1:n
     W(end, j) = 0;
     W(:,j+1) = A\W(:,j);
     W = sparse(W);
-    j
+    if mod(j,100) == 0
+        j
+    end
+
 end
 
 

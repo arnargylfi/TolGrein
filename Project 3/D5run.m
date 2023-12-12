@@ -22,5 +22,4 @@ for j = 1:n+1
     xlabel('x[m]')
     ylabel('V [V]')
     title("t = " +t(j)+"s")
-    pause(0.1);
 end % for
