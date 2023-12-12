@@ -38,6 +38,7 @@ for j = 1:n
     W(1, j) = 0;
     W(end, j) = 0;
     W(:,j+1) = A\W(:,j);
+    % Skrifa út hver 100 skref svo við sjáum árangurinn
     if mod(j,100) == 0
         j
     end

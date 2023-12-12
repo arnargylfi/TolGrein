@@ -1,7 +1,7 @@
 format long
-T= 10^-2;
-m = 100;
-n = 100;
+T= 10^-2;   % sek
+m = 100;    % skrefafjöldi x
+n = 100;    % skrefafjöldi t
 [W, x, t] = D4(T,m,n);
 max_spenna = max(W(:, end))
 mesh(x, t, W')
