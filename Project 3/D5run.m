@@ -1,9 +1,10 @@
 format long
-T= 10^-2;
-m = 5000;
-n = 5000;
+T= 10^-2;   % sek
+m = 5000;   % skrefafjöldi x
+n = 5000;   % skrefafjöldi t
 [W, x, t] = D4(T,m,n);
 ka = max(W(:, end));
+% Teikna 3D mynd
 mesh(x, t, W')
 xlabel("x [m]")
 ylabel("t [s]")

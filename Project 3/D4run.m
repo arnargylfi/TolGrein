@@ -4,6 +4,7 @@ m = 100;    % skrefafjöldi x
 n = 100;    % skrefafjöldi t
 [W, x, t] = D4(T,m,n);
 max_spenna = max(W(:, end))
+% Teikna 3D mynd
 mesh(x, t, W')
 xlabel("x [m]")
 ylabel("t [s]")
