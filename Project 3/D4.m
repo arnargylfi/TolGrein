@@ -1,9 +1,9 @@
 function w = D4(T,m,n)
-L = 4*10^-4;
+L = 0.04*10^-2;
 h = L/m;
 k = T/n;
-d = 0.0002;
-beta = d*k/h^2;
+d = 0.0002*10^-2;
+beta = d*k/(h^2);
 relec = 0.0008*10^-2; 
 % Reikna A: 
 A = diag((2*beta+k+1)*ones(1,m+1)) +... %Miðju hornalína
@@ -18,7 +18,7 @@ sirka_midja = (x>=L/2-relec) & (x<=L/2+relec);
 %margfalda það með 0.05 V fyrir b vigur 😎
 b = sirka_midja*0.05;
 b = b';
-w = b\A;
+w = A\b;
 
 
 
