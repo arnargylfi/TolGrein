@@ -1,7 +1,8 @@
 function [W, x, t] = D4(T,m,n)
-L = 0.04*10^-2;  % [m] 0.04 cm
-d = 0.0002*10^-2; % [m] 0.0002 cm
-relec = 0.0007*10^-2; % [m] 0.0007 cm
+cm = 1;
+L = 0.04*cm;  % 0.04 cm
+d = 0.0002*cm; %0.0002 cm
+relec = 0.0007*cm; % 0.0008 cm
 V_0 = 0.05; % 0.05 V
 h = L/m;
 k = T/n;
@@ -12,7 +13,8 @@ A = sparse(m+1,m+1);
 A(1:2+m:(m+1)^2) = alpha;
 A(m+2:2+m:(m+1)^2) = beta;
 A(2:2+m:(m+1)^2) = beta;
-spy(A)
+% spy(A)
+full(A)
 
 % laga efstu og neðstu línuna 
 A(1, 1:2) = [1, 0];

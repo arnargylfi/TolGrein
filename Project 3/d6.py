@@ -14,7 +14,7 @@ def sigmoid(x, a, b):
 0.04 0.2
 """
 xdata = np.array([0, 0.01, 0.02, 0.03, 0.04])
-ydata = np.array([4.8, 4.3, 2.3, 0.8, 0.2])
+ydata = np.array([4.8, 4.3, 2.3, 0.8, 0.2])*1e-4
 
 p0 = [4, -0.05] # this is an mandatory initial guess
 
