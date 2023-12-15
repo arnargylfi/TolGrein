@@ -35,14 +35,28 @@ for i=1:1000
         break
     end
 end
+% figure(1)
+% plot(a)
+% title('a')
+% figure(2)
+% plot(b)
+% title('b')
+% figure(3)
+% plot(log(noorm))
+% title('norm')
+
+t2 = 0:0.001:0.04;
+
+
 figure(1)
-plot(a)
-title('a')
-figure(2)
-plot(b)
-title('b')
-figure(3)
-plot(log(noorm))
-title('norm')
-% figure(4)
-% plot(t,r(x1,x2,t,d,L))
+clf
+hold on
+plot(t,d,"*r")
+for i = 1:length(a)
+    plot(t2,a(i)./(1+exp((t2-L/2)/b(i))))
+end
+colororder(["#FFA500","red","green","blue","black","m"])
+legend("Mæligildi","Ítrun 1","Ítrun 2","Ítrun 3","Ítrun 4","Ítrun 5","Ítrun 6")
+xlabel("t [s]")
+ylabel("d [m]")
+exportgraphics(gcf, "Myndir/D6.pdf")

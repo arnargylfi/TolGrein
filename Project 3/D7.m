@@ -33,7 +33,7 @@ A(2:2+m:(m+1)^2) = alphax(1:(end-1));
 A(1:2+m:(m+1)^2) = betax;
 % hægri skálína
 A((m+2):2+m:(m+1)^2) = gammax(2:end);
-full(A)
+full(A);
 % spy(A)
 
 % laga efstu og neðstu línuna 

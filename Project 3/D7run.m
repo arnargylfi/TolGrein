@@ -1,10 +1,10 @@
 close all
 format long
 T= 10^-2;   % sek
-m = 100;    % skrefafjöldi x
-n = 100;    % skrefafjöldi t
+m = 1500;    % skrefafjöldi x
+n = 1500;    % skrefafjöldi t
 [W, x, t] = D7(T,m,n);
-max_spenna = max(W(:, end))
+max_spenna = max(W(:, end));
 % Teikna 3D mynd
 figure(1)
 mesh(x, t, W')
