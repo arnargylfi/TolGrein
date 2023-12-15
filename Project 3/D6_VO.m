@@ -54,10 +54,11 @@ title('norm')
 figure(4)
 plot(t,r(x1,x2,t,d,L))
 
-t2 = 0:0.001:0.04;
 
 
-figure(1)
+t2 = 0:L/50:L;
+
+figure(5)
 clf
 hold on
 plot(t,d,"*r")
