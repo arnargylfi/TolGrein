@@ -18,9 +18,9 @@ set(gca,'DataAspectRatio',[1 1 h(3)]);
 exportgraphics(gcf,"Myndir/taugafruma_nalgun1.pdf")
 
 % Nálgun 2 - Sigmoid
-x = 0:L/4:L;
-a = 4.947*10^(-4);  % Tekið úr dæmi 6 á overleaf
-b = 5.731*10^(-3);  % Tekið úr dæmi 6 á overleaf
+x = 0:L/4:L;        % [m]
+a = 4.9466*10^(-6);  % [m] Tekið úr D6_VO.m
+b = 5.7309*10^(-5);  % [m] Tekið úr D6_VO.m
 d = sigmoid(x, L, a, b);
 r = d/2;
 
