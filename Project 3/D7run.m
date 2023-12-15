@@ -13,7 +13,14 @@ T = 10^-2;   % [sek]
 m = 5000;   % skrefafjöldi x
 n = m;   % skrefafjöldi t
 [W, x, t] = D7(T,m,n);
-max_spenna = max(W(:, end));
+max_spenna = max(W(:, end))
+d = sigmoid(x,L,a,b);
+flatarmal = 0;
+h = L/(m+1);
+for i = 1:(m+1)
+    flatarmal = flatarmal + pi()*d(i)*h;
+end % for
+
 % Teikna 3D mynd
 figure(1)
 mesh(x, t, W')
