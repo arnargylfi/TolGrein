@@ -6,6 +6,7 @@ def sigmoid(x, a, b):
     y = a/(1 + np.exp(-(x-L/2)/b))
     return (y)
 
+
 """
 0 4.8
 0.01 4.3
@@ -13,6 +14,7 @@ def sigmoid(x, a, b):
 0.03 0.8
 0.04 0.2
 """
+
 xdata = np.array([0, 0.01, 0.02, 0.03, 0.04])
 ydata = np.array([4.8, 4.3, 2.3, 0.8, 0.2])*1e-4
 
