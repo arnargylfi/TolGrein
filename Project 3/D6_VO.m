@@ -6,7 +6,7 @@ d=(10^-4)*[4.8,4.3,2.3,0.8,0.2];
 format long
 
 iter=0;
-tol=10^-7;
+tol=10^-8;
 x1=2*10^-3; %initial values for a
 x2=2*10^-2; %initial values for b
 x=[x1,x2]'; %Fylki sem inniheldur x1 og x2 og notum í ítrunarloopunni
@@ -18,8 +18,8 @@ a=[];%zeros(1955,1);    % Til að plotta upp a í lokin
 b=[];%zeros(1955,1);    % Til að plotta upp b í lokin
 noorm=[];%zeros(1955,1)   % Til að plotta upp norm í lokin
 
-for i=1:1000
-%while norm(x-x_old,inf)>tol
+% for i=1:1000
+while norm(x-x_old,inf)>tol
     iter=iter+1
     J1=J(x1,x2,t,L)
     r1=r(x1,x2,t,d,L)
@@ -31,9 +31,9 @@ for i=1:1000
     noorm(i) = max(abs(x_old-x));
     a(i)=x1;    % Hleð inn x1 gildum í a
     b(i)=x2;    % Hleð inn x2 gildum í b
-    if norm(x_old-x,inf)<tol
-        break
-    end
+    % if norm(x_old-x,inf)<tol
+    %     break
+    % end
 end
 figure(1)
 plot(a)
