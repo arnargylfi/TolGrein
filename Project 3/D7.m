@@ -46,7 +46,8 @@ sirka_midja = (x>=L/2-relec) & (x<=L/2+relec);
 %margfalda það með 0.05 V fyrir b vigur í j=0 😎
 b0 = sirka_midja'*V_0;
 
-% W er fylki af w_{i,j}
+% W er fylki af w_{i,j}. Er í raun W(x,t) nema við setjum inn stikann fyrir
+% x og t en ekki gildið sjálft
 W = zeros(m+1, n+1);
 
 %  fyrsti dálkur er b0

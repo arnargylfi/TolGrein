@@ -1,6 +1,6 @@
 %Part 6
 clear % Til öryggis ef einhver er t.d. með breytu sem heitir 'r' og reynir að kalla á fallið r.m #LentiÍÞvíOgÞaðSökkar
-L=0.04*10^(-2);
+L=0.04*10^(-2); % [m]
 t=[0,0.01*10^(-2),0.02*10^(-2),0.03*10^(-2),0.04*10^(-2)];  % [m] Þetta eru x gildin
 d=(10^-6)*[4.8,4.3,2.3,0.8,0.2];    % [m] gefin gildi
 
@@ -67,7 +67,7 @@ for i = 1:length(a)
 end
 colororder(["#FFA500","red","green","blue","black","m"])
 legend("Mæligildi","Ítrun 1","Ítrun 2","Ítrun 3","Ítrun 4","Ítrun 5","Ítrun 6")
-xlabel("t [s]")
+xlabel("x [m]")
 ylabel("d [m]")
 exportgraphics(gcf, "Myndir/D6.pdf")
 
