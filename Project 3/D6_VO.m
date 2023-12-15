@@ -1,4 +1,5 @@
 %Part 6
+clear % Til öryggis ef einhver er t.d. með breytu sem heitir 'r' og reynir að kalla á fallið r.m #LentiÍÞvíOgÞaðSökkar
 L=0.04*10^(-2);
 t=[0,0.01*10^(-2),0.02*10^(-2),0.03*10^(-2),0.04*10^(-2)];  % [m] Þetta eru x gildin
 d=(10^-6)*[4.8,4.3,2.3,0.8,0.2];    % [m] gefin gildi
@@ -50,5 +51,5 @@ title('b')
 figure(3)
 plot(log(noorm))
 title('norm')
-% figure(4)
-% plot(t,r(x1,x2,t,d,L))
+figure(4)
+plot(t,r(x1,x2,t,d,L))
