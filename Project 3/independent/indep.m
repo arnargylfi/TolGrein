@@ -1,10 +1,10 @@
 function [W, x, t] = indep(T,m,n, t_rise, t_high, Vmax, a, b)
 if nargin == 0
-    T = 0.3;m=100;n=100; t_rise=0.05; t_high=0.01; Vmax=0.05;
+    T = 0.4;m=100;n=100; t_rise=0.05; t_high=0.01; Vmax=0.05;
     a = 0.0049466;
     b = -0.00573094;
 end
-disp([T,m,n, t_rise, t_high, Vmax, a, b])
+% disp([T,m,n, t_rise, t_high, Vmax, a, b])
 cm = 1;
 L = 0.04*cm;  % 0.04 cm
 h = L/m;
@@ -40,6 +40,8 @@ A((m+2):2+m:(m+1)^2) = gammax(2:end);
 % laga efstu og neðstu línuna 
 A(1, 1:3) = [1, 0, 0];
 A(end, end-2:end) = [-1, 4, -3];
+% A(end, end-2:end) = [0, 0, 1];
+
 
 % Upphafsskilyrðin eru
 b0 = zeros(m+1, 1);
@@ -56,7 +58,6 @@ for j = 1:n
     W(1, j) = V0t(j);
     geyma = W(end,j);
     W(end, j) = 0;
-    
     % reiknum næsta dálk
     W(:,j+1) = A\W(:,j);
 
@@ -66,11 +67,15 @@ for j = 1:n
 %     end
 end
 
-% mesh(x, t, W')
-% xlabel("x")
-% ylabel("t")
+% for i = 1:m+1
+%     W(i, :) = W(i,:)/(dx(i)^2);
+% end
+
 % if nargin == 0
-%     W = max(W(:, end))
+%     mesh(x, t, W')
+%     xlabel("x")
+%     ylabel("t")
+%     W = max(W(:, end));
 % end
 
 

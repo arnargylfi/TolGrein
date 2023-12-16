@@ -1,5 +1,7 @@
 [W, x, t] = indep();
 
+
+
 figure(1)
 mesh(x, t, W')
 xlabel("x")
@@ -7,7 +9,7 @@ ylabel("t")
 
 % figure(2)
 % plot(t, W(end, :))
-
+return
 i = find(W(end, :) > 0.05, 1, 'first')
 hold on
 % plot3(x(i), t(i), W(i, end), '^r')
