@@ -15,17 +15,21 @@ k = T/n;
 x = 0:h:L;
 t = 0:k:T;
 
-% Reikna A:   -0.00573094
-a = 0.0049466;
-b = -0.00573094;
-ispace = 1:(m+1);
+% Reikna A fylkið, 
+a = 4.9466*10^(-4);  % [m] Tekið úr D6_VO.m
+b = -5.7309*10^(-3);  % [m] Tekið úr D6_VO.m
+
+% Þvermálið og afleiða þess
 dx = a./(1 + exp(-(x-L/2)/b));
 dddx = gradient(dx)./gradient(x);
+
+% sigma, gamma, alpha og beta
 gammax = -k*dx/h^2;
 sigmax = 2*k*dddx/h;
 alphax = gammax + sigmax;
 betax = 1 + k - 2*gammax - sigmax;
 
+% Röðum inn í A
 A = sparse(m+1,m+1);
 % vinstri skálína
 A(2:2+m:(m+1)^2) = alphax(1:(end-1));
@@ -33,7 +37,7 @@ A(2:2+m:(m+1)^2) = alphax(1:(end-1));
 A(1:2+m:(m+1)^2) = betax;
 % hægri skálína
 A((m+2):2+m:(m+1)^2) = gammax(2:end);
-full(A)
+% full(A);
 % spy(A)
 
 % laga efstu og neðstu línuna 
@@ -46,7 +50,8 @@ sirka_midja = (x>=L/2-relec) & (x<=L/2+relec);
 %margfalda það með 0.05 V fyrir b vigur í j=0 😎
 b0 = sirka_midja'*V_0;
 
-% W er fylki af w_{i,j}
+% W er fylki af w_{i,j}. Er í raun W(x,t) nema við setjum inn stikann fyrir
+% x og t en ekki gildið sjálft
 W = zeros(m+1, n+1);
 
 %  fyrsti dálkur er b0

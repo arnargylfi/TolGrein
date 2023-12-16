@@ -14,7 +14,7 @@ A(1:2+m:(m+1)^2) = alpha;
 A(m+2:2+m:(m+1)^2) = beta;
 A(2:2+m:(m+1)^2) = beta;
 % spy(A)
-full(A)
+full(A);
 
 % laga efstu og neðstu línuna 
 A(1, 1:2) = [1, 0];

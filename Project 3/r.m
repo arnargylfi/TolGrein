@@ -1,4 +1,3 @@
-
 function r=r(x1,x2,t,d,L)
 
 r=zeros(length(t),1);
