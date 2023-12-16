@@ -38,4 +38,3 @@ h = get(gca,'DataAspectRatio');
 set(gca,'DataAspectRatio',[1 1 h(3)]);
 
 exportgraphics(gcf,"Myndir/taugafruma_nalgun2.pdf");
-
