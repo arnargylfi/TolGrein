@@ -7,10 +7,13 @@ n = 100;    % skrefafjöldi t
 max_spenna = max(W(:, end))
 % Teikna 3D mynd
 mesh(x, t, W')
+title('Taugahimnuspenna sem fall af tíma og rúmi')
 xlabel("x [m]");
 ylabel("t [s]");
 zlabel("V [V]");
-exportgraphics(gcf,"Myndir/D4.pdf")
+%exportgraphics(gcf,"Myndir/D4.pdf")
+%exportgraphics(gcf,'C:/Users/valdi/OneDrive/Documents/MATLAB/Lota 3/part4_1.pdf');
+
 
 % HREYFIMYND 
 
