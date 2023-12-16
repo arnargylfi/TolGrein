@@ -7,10 +7,10 @@ n = 100;    % skrefafjöldi t
 max_spenna = max(W(:, end))
 % Teikna 3D mynd
 mesh(x, t, W')
-xlabel("x [m]");
+xlabel("x [cm]");
 ylabel("t [s]");
-zlabel("V [V]");
-exportgraphics(gcf,"Myndir/D4.pdf");
+zlabel("Taugahimnuspenna [V]");
+% exportgraphics(gcf,"Myndir/D4.pdf");
 
 % HREYFIMYND 
 

@@ -3,10 +3,11 @@
 threshold = 0.025;
 
 % construct the search space for b
-Nb = 10;
-bspace = linspace(-0.003, -0.0165, Nb);
+Nb = 20;
+bspace = linspace(-0.001, -0.03, Nb);
 % define the volume of the dendrite
-R_0 = 3.5745e-7;
+R_0 = 1e-7;
+L = 0.04;
 % find a according to equation (46), 
 a = @(b) sqrt(2*R_0/(L - 2* b* tanh(L/(4*b))));
 
@@ -29,10 +30,10 @@ for i = 1:Nb
     ttime_thresh(i) = ttt;
     ttime_peak(i) = ttp;
     peaks(i) = peak;
-    exportgraphics(gcf, "../Myndir/indep_b_" + bspace(i) + ".pdf")
+%     exportgraphics(gcf, "../Myndir/indep_b_" + bspace(i) + ".pdf")
 end
 figure(3); clf; hold on
-xlabel("b")
+xlabel("b [cm]")
 yyaxis left
 plot(bspace, ttime_thresh)
 plot(bspace, ttime_peak)

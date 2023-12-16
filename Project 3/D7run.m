@@ -5,16 +5,18 @@ close all
 format long
 % Teikna allt sem 3D mynd og hreyfimynd
 hreyfimynd = false;  % false til að sleppa því að teikna hreyfimynd, true til að teikna hreyfimynd
-a = 4.9466*10^(-6);  % [m] Tekið úr D6_VO.m
-b = 5.7309*10^(-5);  % [m] Tekið úr D6_VO.m
+a = 4.9466*10^(-4);  % [cm] Tekið úr D6_VO.m
+b = 5.7309*10^(-3);  % [cm] Tekið úr D6_VO.m
 
-L = 0.04*10^(-2); % [m]
+L = 0.04; % [cm]
 T = 10^-2;   % [sek]
-m = 5000;   % skrefafjöldi x
+m = 100;   % skrefafjöldi x
 n = m;   % skrefafjöldi t
 [W, x, t] = D7(T,m,n);
 max_spenna = max(W(:, end))
 d = sigmoid(x,L,a,b);
+figure(2);clf;
+plot(x, d)
 flatarmal = 0;
 h = L/(m+1);
 for i = 1:(m+1)
@@ -24,12 +26,12 @@ end % for
 % Teikna 3D mynd
 figure(1)
 mesh(x, t, W')
-xlabel("x [m]");
+xlabel("x [cm]");
 ylabel("t [s]");
-zlabel("V [V]");
+zlabel("Taugahimnuspenna [V]");
 % Vista mynd
-exportgraphics(gcf,"Myndir/D7_1.pdf");
-
+% exportgraphics(gcf,"Myndir/D7_1.pdf");
+return
 % HREYFIMYND
 if hreyfimynd
     figure();
