@@ -10,7 +10,7 @@ mesh(x, t, W')
 xlabel("x [m]");
 ylabel("t [s]");
 zlabel("V [V]");
-exportgraphics(gcf,"Myndir/D4.pdf")
+exportgraphics(gcf,"Myndir/D4.pdf");
 
 % HREYFIMYND 
 
