@@ -1,7 +1,7 @@
 function [W, x, t] = indep(T,m,n, t_rise, t_high, Vmax, a, b)
 if nargin == 0
-    T = 0.4;m=100;n=100; t_rise=0.05; t_high=0.01; Vmax=0.05;
-    a = 0.00049466;
+    T = 0.4;m=1000;n=1000; t_rise=0.05; t_high=0.01; Vmax=0.05;
+    a = 0.0049466;
     b = -0.00573094;
 end
 % disp([T,m,n, t_rise, t_high, Vmax, a, b])
