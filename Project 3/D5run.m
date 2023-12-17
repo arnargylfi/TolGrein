@@ -8,12 +8,16 @@ hreyfimynd = false; % false sleppir því að gera hreyfimynd, true gerir hreyfi
 max_spenna = max(W(:, end))
 ka = max(W(:, end));
 % Teikna 3D mynd
-mesh(x, t, W');
-xlabel("x [m]");
-ylabel("t [s]");
-zlabel("V [V]");
-exportgraphics(gcf,"Myndir/D5.pdf");
-                
+
+%%
+mesh(x, t, W')
+title('Taugahimnuspenna sem fall af tíma og rúmi')
+xlabel("x [m]")
+ylabel("t [s]")
+zlabel("V [V]")
+%exportgraphics(gcf,"Myndir/D5.pdf")
+exportgraphics(gcf,'C:/Users/valdi/OneDrive/Documents/MATLAB/Lota 3/part5_1.pdf');
+%%
 % HREYFIMYND
 if hreyfimynd
     figure();
